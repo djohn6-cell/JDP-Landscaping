@@ -54,6 +54,12 @@ const localBusinessSchema = {
   telephone: "+17049896027",
   email: "jdpone@gmail.com",
   url: siteUrl,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Waxhaw",
+    addressRegion: "NC",
+    addressCountry: "US",
+  },
   areaServed: [
     "Charlotte, NC",
     "Marvin, NC",

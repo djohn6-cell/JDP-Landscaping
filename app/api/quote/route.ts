@@ -43,7 +43,25 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { firstName, lastName, phone, email, address, service, message } = body;
+  const { firstName, lastName, phone, email, address, service, message, _trap } = body;
+
+  // Honeypot — bots fill this, real users don't
+  if (_trap) {
+    // Return success silently so bots don't know they were caught
+    return Response.json({ success: true });
+  }
+
+  // Field length limits — prevent SMS abuse and log bloat
+  if (
+    (firstName?.length ?? 0) > 100 ||
+    (lastName?.length ?? 0) > 100 ||
+    (address?.length ?? 0) > 300 ||
+    (message?.length ?? 0) > 1000 ||
+    (phone?.length ?? 0) > 30 ||
+    (email?.length ?? 0) > 254
+  ) {
+    return Response.json({ error: "Invalid request." }, { status: 400 });
+  }
 
   // Required: name and address
   if (!firstName || !address) {

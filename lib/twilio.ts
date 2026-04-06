@@ -37,7 +37,6 @@ export async function sendQuoteSMS({
 }) {
   const from = process.env.TWILIO_PHONE_NUMBER?.trim();
   const to = process.env.OWNER_PHONE_NUMBER?.trim();
-  console.log("[twilio debug] from:", JSON.stringify(from), "to:", JSON.stringify(to));
 
   if (!from || !to) {
     throw new Error(

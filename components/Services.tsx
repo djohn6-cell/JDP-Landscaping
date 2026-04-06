@@ -1,28 +1,45 @@
+import Image from "next/image";
+
 const services = [
   {
-    name: "Trimming",
-    description: "Precise cuts that keep your property looking sharp and well-maintained.",
-    icon: <TrimIcon />,
-  },
-  {
     name: "Mulching",
-    description: "Healthy beds, clean edges, and lasting results that protect your plants.",
+    description: "Fresh dark mulch that protects your plants, holds moisture, and makes every bed look sharp.",
     icon: <MulchIcon />,
-  },
-  {
-    name: "Removal",
-    description: "Trees, shrubs, and debris — cleared cleanly and hauled away.",
-    icon: <RemoveIcon />,
-  },
-  {
-    name: "Planting",
-    description: "The right plants in the right places, chosen for your soil and space.",
-    icon: <PlantIcon />,
+    images: [
+      { src: "/images/projects/ba1-before.jpg", label: "Before" },
+      { src: "/images/projects/ba1-after.jpg", label: "After" },
+    ],
   },
   {
     name: "Cleanups",
-    description: "Seasonal and post-storm cleanups that leave your property looking fresh and well-kept.",
+    description: "Seasonal and post-storm cleanups — debris removed, beds cleared, property looking fresh.",
     icon: <DecorIcon />,
+    images: [
+      { src: "/images/services/planting.jpg", label: null },
+    ],
+  },
+  {
+    name: "Removal",
+    description: "Trees, shrubs, and overgrowth — cleared cleanly and hauled away.",
+    icon: <RemoveIcon />,
+    images: [],
+  },
+  {
+    name: "Trimming",
+    description: "Precise cuts that keep your hedges, shrubs, and trees looking sharp and well-maintained.",
+    icon: <TrimIcon />,
+    images: [
+      { src: "/images/services/trimming-before.jpg", label: "Before" },
+      { src: "/images/services/trimming-after.jpg", label: "After" },
+    ],
+  },
+  {
+    name: "Planting",
+    description: "The right plants in the right places, chosen for your soil, space, and style.",
+    icon: <PlantIcon />,
+    images: [
+      { src: "/images/projects/ba3-before.jpg", label: null },
+    ],
   },
 ];
 
@@ -45,20 +62,85 @@ export default function Services() {
 
         {/* Service cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.slice(0, 4).map((service) => (
+          {services.map((service) => (
             <div
               key={service.name}
-              className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-black/5 group"
+              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-black/5 group"
             >
-              <div className="w-12 h-12 bg-brand-green/10 group-hover:bg-brand-green/20 rounded-xl flex items-center justify-center text-brand-green mb-5 transition-colors">
-                {service.icon}
+              {/* Photo area — 3-panel, 2-panel split, or single */}
+              {service.images.length === 0 ? (
+                <div className="aspect-video bg-brand-dark flex items-center justify-center">
+                  <div className="text-brand-green-light/40 scale-150">
+                    {service.icon}
+                  </div>
+                </div>
+              ) : service.images.length === 3 ? (
+                <div className="grid grid-cols-3 aspect-video relative">
+                  {service.images.map((img, i) => (
+                    <div key={img.src} className="relative overflow-hidden">
+                      <Image
+                        src={img.src}
+                        alt={`${img.label ? img.label + " — " : ""}${service.name} — JDP Landscaping`}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 33vw, 17vw"
+                      />
+                      {img.label && (
+                        <span className={`absolute top-2 left-2 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide ${img.label === "After" ? "bg-brand-green/90" : "bg-brand-dark/70"}`}>
+                          {img.label}
+                        </span>
+                      )}
+                      {i < 2 && (
+                        <div className="absolute inset-y-0 right-0 w-px bg-white/60 z-10" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : service.images.length === 2 ? (
+                <div className="grid grid-cols-2 aspect-video relative">
+                  {service.images.map((img) => (
+                    <div key={img.src} className="relative overflow-hidden">
+                      <Image
+                        src={img.src}
+                        alt={`${img.label ? img.label + " — " : ""}${service.name} — JDP Landscaping`}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 17vw"
+                      />
+                      {img.label && (
+                        <span className={`absolute top-2 left-2 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide ${img.label === "After" ? "bg-brand-green/90" : "bg-brand-dark/70"}`}>
+                          {img.label}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                  <div className="absolute inset-y-0 left-1/2 w-px bg-white/60 z-10" />
+                </div>
+              ) : (
+                <div className="aspect-video relative overflow-hidden">
+                  <Image
+                    src={service.images[0].src}
+                    alt={`${service.name} — JDP Landscaping Charlotte NC`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+              )}
+
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 bg-brand-green/10 group-hover:bg-brand-green/20 rounded-lg flex items-center justify-center text-brand-green shrink-0 transition-colors">
+                    {service.icon}
+                  </div>
+                  <h3 className="font-heading font-bold text-brand-dark text-lg">
+                    {service.name}
+                  </h3>
+                </div>
+                <p className="text-brand-charcoal/70 text-sm leading-relaxed">
+                  {service.description}
+                </p>
               </div>
-              <h3 className="font-heading font-bold text-brand-dark text-xl mb-2">
-                {service.name}
-              </h3>
-              <p className="text-brand-charcoal/70 text-sm leading-relaxed">
-                {service.description}
-              </p>
             </div>
           ))}
 
@@ -80,24 +162,6 @@ export default function Services() {
               Call Now
             </a>
           </div>
-
-          {/* Cleanups */}
-          {services.slice(4).map((service) => (
-            <div
-              key={service.name}
-              className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-black/5 group"
-            >
-              <div className="w-12 h-12 bg-brand-green/10 group-hover:bg-brand-green/20 rounded-xl flex items-center justify-center text-brand-green mb-5 transition-colors">
-                {service.icon}
-              </div>
-              <h3 className="font-heading font-bold text-brand-dark text-xl mb-2">
-                {service.name}
-              </h3>
-              <p className="text-brand-charcoal/70 text-sm leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

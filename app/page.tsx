@@ -1,9 +1,8 @@
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
-import AboutPreview from "@/components/AboutPreview";
+import SocialProof from "@/components/SocialProof";
 import ServiceTeaser from "@/components/ServiceTeaser";
-import FeaturedWork from "@/components/FeaturedWork";
-import WhyChooseUs from "@/components/WhyChooseUs";
+import OurWorkCTA from "@/components/OurWorkCTA";
 import HomepageCTA from "@/components/HomepageCTA";
 
 export default function HomePage() {
@@ -11,10 +10,9 @@ export default function HomePage() {
     <main>
       <Hero />
       <TrustBar />
-      <AboutPreview />
+      <SocialProof />
       <ServiceTeaser />
-      <FeaturedWork />
-      <WhyChooseUs />
+      <OurWorkCTA />
       <HomepageCTA />
     </main>
   );

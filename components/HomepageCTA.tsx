@@ -5,7 +5,7 @@ export default function HomepageCTA() {
     <section className="relative py-20 lg:py-28 overflow-hidden">
       {/* Background image */}
       <div
-        className="absolute inset-0 bg-[url('/images/projects/project-2-after.jpg')] bg-cover bg-center"
+        className="absolute inset-0 bg-[url('/images/bottom.png')] bg-cover bg-center"
         aria-hidden="true"
       />
       <div className="absolute inset-0 bg-brand-dark/80" aria-hidden="true" />

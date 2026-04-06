@@ -40,8 +40,8 @@ const pairs = [
 const singles = [
   { src: "/images/projects/project-1.jpg", label: "Mulch bed installation and edging" },
   { src: "/images/projects/project-4.jpg", label: "Backyard patio area landscaping" },
-  { src: "/images/projects/project-5.jpg", label: "Shrub trimming and yard cleanup" },
-  { src: "/images/projects/project-6.jpg", label: "Property planting and design" },
+  { src: "/images/projects/project-5.jpg", label: "Mulch island and landscape bed" },
+  { src: "/images/projects/project-7.jpg", label: "Lawn cleanup and yard care" },
 ];
 
 const serviceSchema = {
@@ -67,7 +67,7 @@ export default function OurWorkPage() {
       {/* Page Hero */}
       <section className="relative pt-40 pb-20 lg:pt-48 lg:pb-28 overflow-hidden">
         <div
-          className="absolute inset-0 bg-[url('/images/projects/project-3-after.jpg')] bg-cover bg-center"
+          className="absolute inset-0 bg-[url('/images/top.png')] bg-cover bg-center"
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-brand-dark/85" aria-hidden="true" />
@@ -89,30 +89,29 @@ export default function OurWorkPage() {
       <Services />
 
       {/* Before & After Gallery — side-by-side */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-10 lg:py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-brand-green font-semibold text-sm tracking-widest uppercase mb-4">
+          <div className="text-center max-w-xl mx-auto mb-8">
+            <p className="text-brand-green font-semibold text-sm tracking-widest uppercase mb-3">
               Real Results
             </p>
-            <h2 className="font-heading font-black text-brand-dark text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
+            <h2 className="font-heading font-black text-brand-dark text-2xl sm:text-3xl lg:text-4xl leading-tight mb-3">
               See the Difference
             </h2>
-            <p className="text-brand-charcoal/70 text-base sm:text-lg">
+            <p className="text-brand-charcoal/70 text-sm sm:text-base">
               Real results from properties across Charlotte, Ballantyne,
-              Matthews, and surrounding communities. No filters, no staging —
-              just honest work.
+              Matthews, and surrounding communities.
             </p>
           </div>
 
           {/* Before/After pairs — side by side */}
-          <div className="space-y-12 mb-16">
+          <div className="space-y-5 mb-8">
             {pairs.map((pair) => (
-              <div key={pair.label} className="rounded-2xl overflow-hidden shadow-md bg-brand-cream">
+              <div key={pair.label} className="rounded-xl overflow-hidden shadow-sm bg-brand-cream">
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   {/* Before */}
                   <div className="relative">
-                    <div className="aspect-[4/3] relative">
+                    <div className="aspect-[16/9] relative">
                       <Image
                         src={pair.before}
                         alt={`${pair.label} before — JDP Landscaping Charlotte NC`}
@@ -121,13 +120,13 @@ export default function OurWorkPage() {
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
-                    <span className="absolute top-3 left-3 bg-brand-dark/70 backdrop-blur-sm text-white text-sm md:text-xs font-bold px-4 py-2 md:px-3 md:py-1.5 rounded-full uppercase tracking-wide">
+                    <span className="absolute top-2 left-2 bg-brand-dark/70 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                       Before
                     </span>
                   </div>
                   {/* After */}
                   <div className="relative">
-                    <div className="aspect-[4/3] relative">
+                    <div className="aspect-[16/9] relative">
                       <Image
                         src={pair.after}
                         alt={`${pair.label} after — JDP Landscaping Charlotte NC`}
@@ -136,13 +135,13 @@ export default function OurWorkPage() {
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
-                    <span className="absolute top-3 left-3 bg-brand-green/90 backdrop-blur-sm text-white text-sm md:text-xs font-bold px-4 py-2 md:px-3 md:py-1.5 rounded-full uppercase tracking-wide">
+                    <span className="absolute top-2 left-2 bg-brand-green/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                       After
                     </span>
                   </div>
                 </div>
-                <div className="px-6 py-4">
-                  <p className="font-heading font-bold text-brand-dark text-base">
+                <div className="px-5 py-3 flex items-center justify-between">
+                  <p className="font-heading font-bold text-brand-dark text-sm">
                     {pair.label}
                   </p>
                 </div>
@@ -151,17 +150,17 @@ export default function OurWorkPage() {
           </div>
 
           {/* Project photo grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {singles.map((photo) => (
               <div
                 key={photo.src}
-                className="aspect-square rounded-xl overflow-hidden shadow-sm group"
+                className="aspect-[4/3] rounded-xl overflow-hidden shadow-sm group"
               >
                 <Image
                   src={photo.src}
                   alt={`${photo.label} — JDP Landscaping Charlotte NC`}
                   width={400}
-                  height={400}
+                  height={300}
                   className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -181,11 +180,10 @@ export default function OurWorkPage() {
               Quality You Can See in Motion
             </h2>
           </div>
-          <div className="rounded-2xl overflow-hidden shadow-xl aspect-video w-full max-w-4xl mx-auto">
+          <div className="rounded-2xl overflow-hidden shadow-xl aspect-9/16 w-full max-w-sm mx-auto">
             <video
-              src="/videos/showcase-compressed.mp4"
+              src="/videos/showcase.mp4"
               controls
-              poster="/images/projects/project-3-after.jpg"
               preload="none"
               className="w-full h-full object-cover"
               aria-label="JDP Landscaping project showcase — Charlotte NC"
@@ -194,64 +192,10 @@ export default function OurWorkPage() {
         </div>
       </section>
 
-      {/* Craftsmanship Block */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
-              <p className="text-brand-green font-semibold text-sm tracking-widest uppercase mb-4">
-                Our Approach
-              </p>
-              <h2 className="font-heading font-black text-brand-dark text-3xl sm:text-4xl leading-tight mb-6">
-                Every Property Is Different
-              </h2>
-              <div className="space-y-4 text-brand-charcoal/70 text-base leading-relaxed">
-                <p>
-                  We take the time to understand what your space needs before we
-                  start cutting, planting, or hauling. That attention is why our
-                  work looks the way it does.
-                </p>
-                <p>
-                  No cookie-cutter approaches. No rushing through to get to the
-                  next job. We treat your property like it&apos;s ours — because
-                  our reputation depends on every single yard we touch.
-                </p>
-              </div>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/quote"
-                  className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-mid text-white font-bold px-6 py-3.5 rounded-full transition-colors w-fit"
-                >
-                  Get a Free Quote
-                </Link>
-                <a
-                  href="tel:+17049896027"
-                  className="inline-flex items-center gap-2 text-brand-green border-2 border-brand-green hover:bg-brand-green hover:text-white font-semibold px-6 py-3.5 rounded-full transition-colors w-fit"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  Call (704) 989-6027
-                </a>
-              </div>
-            </div>
-            <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-lg">
-              <Image
-                src="/images/projects/project-4.jpg"
-                alt="JDP Landscaping craftsmanship — Charlotte NC"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Page CTA */}
       <section className="relative py-20 lg:py-28 overflow-hidden">
         <div
-          className="absolute inset-0 bg-[url('/images/projects/project-1.jpg')] bg-cover bg-center"
+          className="absolute inset-0 bg-[url('/images/top2.png')] bg-cover bg-center"
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-brand-dark/80" aria-hidden="true" />

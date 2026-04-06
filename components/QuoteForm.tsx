@@ -11,6 +11,7 @@ type FormData = {
   address: string;
   service: string;
   message: string;
+  _trap: string;
 };
 
 const initialForm: FormData = {
@@ -20,6 +21,7 @@ const initialForm: FormData = {
   address: "",
   service: "",
   message: "",
+  _trap: "",
 };
 
 const serviceOptions = [
@@ -67,6 +69,7 @@ export default function QuoteForm({ standalone = false }: { standalone?: boolean
           address: form.address,
           service: form.service,
           message: form.message,
+          _trap: form._trap,
         }),
       });
 
@@ -196,6 +199,18 @@ export default function QuoteForm({ standalone = false }: { standalone?: boolean
                 placeholder="Describe what you're looking for — or just tell us what's on your mind. You don't need to know the exact service."
               />
             </div>
+
+            {/* Honeypot — invisible to real users, catches bots */}
+            <input
+              name="_trap"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={form._trap}
+              onChange={handleChange}
+              style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", overflow: "hidden" }}
+            />
 
             {/* Error */}
             {status === "error" && (

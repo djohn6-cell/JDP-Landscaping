@@ -5,7 +5,7 @@ const currentYear = new Date().getFullYear();
 
 const navLinks = [
   { label: "Home", href: "/#hero" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   { label: "Our Work", href: "/our-work" },
   { label: "Contact", href: "/quote" },
 ];

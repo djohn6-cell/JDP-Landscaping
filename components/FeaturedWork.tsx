@@ -1,86 +1,93 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const pairs = [
+  {
+    before: "/images/projects/ba1-before.jpg",
+    after: "/images/projects/ba1-after.jpg",
+    label: "Mulch Bed Refresh",
+    location: "Charlotte, NC",
+  },
+  {
+    before: "/images/projects/ba2-before.jpg",
+    after: "/images/projects/ba2-after.jpg",
+    label: "Front Entry Mulching",
+    location: "Waxhaw, NC",
+  },
+  {
+    before: "/images/projects/ba3-before.jpg",
+    after: "/images/projects/ba3-after.jpg",
+    label: "Shrub & Tree Removal",
+    location: "Charlotte, NC",
+  },
+];
+
 export default function FeaturedWork() {
   return (
     <section className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <p className="text-brand-green font-semibold text-sm tracking-widest uppercase mb-4">
-            Recent Project
+            Real Results
           </p>
           <h2 className="font-heading font-black text-brand-dark text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
-            Real Results, No Filters
+            See the Difference
           </h2>
           <p className="text-brand-charcoal/70 text-base sm:text-lg">
-            See the difference quality landscaping makes.
+            Every job is a transformation. Here&apos;s what that looks like.
           </p>
         </div>
 
-        {/* Featured before/after — side by side */}
-        <div className="rounded-2xl overflow-hidden shadow-md bg-brand-cream mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Before */}
-            <div className="relative">
-              <div className="aspect-[4/3] relative">
-                <Image
-                  src="/images/projects/project-2-before.jpg"
-                  alt="Property transformation before — JDP Landscaping Charlotte NC"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-              <span className="absolute top-3 left-3 bg-brand-dark/70 backdrop-blur-sm text-white text-sm md:text-xs font-bold px-4 py-2 md:px-3 md:py-1.5 rounded-full uppercase tracking-wide">
-                Before
-              </span>
-            </div>
-            {/* After */}
-            <div className="relative">
-              <div className="aspect-[4/3] relative">
-                <Image
-                  src="/images/projects/project-2-after.jpg"
-                  alt="Property transformation after — JDP Landscaping Charlotte NC"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-              <span className="absolute top-3 left-3 bg-brand-green/90 backdrop-blur-sm text-white text-sm md:text-xs font-bold px-4 py-2 md:px-3 md:py-1.5 rounded-full uppercase tracking-wide">
-                After
-              </span>
-            </div>
-          </div>
-          <div className="px-6 py-4">
-            <p className="font-heading font-bold text-brand-dark text-base">
-              Property Transformation
-            </p>
-          </div>
-        </div>
-
-        {/* Thumbnail row */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
-          {[
-            { src: "/images/projects/project-1.jpg", alt: "Project work" },
-            { src: "/images/projects/project-4.jpg", alt: "Outdoor space" },
-            { src: "/images/projects/project-6.jpg", alt: "Landscaping" },
-          ].map((photo) => (
+        {/* 3 before/after pairs */}
+        <div className="flex flex-col gap-6">
+          {pairs.map((pair) => (
             <div
-              key={photo.src}
-              className="aspect-square rounded-xl overflow-hidden shadow-sm group"
+              key={pair.label}
+              className="rounded-2xl overflow-hidden border border-black/5 shadow-sm bg-brand-cream"
             >
-              <Image
-                src={photo.src}
-                alt={`${photo.alt} — JDP Landscaping Charlotte NC`}
-                width={400}
-                height={400}
-                className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-              />
+              <div className="grid grid-cols-2">
+                {/* Before */}
+                <div className="relative">
+                  <div className="aspect-4/3 relative">
+                    <Image
+                      src={pair.before}
+                      alt={`Before — ${pair.label}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                    />
+                  </div>
+                  <span className="absolute top-2 left-2 bg-brand-dark/70 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    Before
+                  </span>
+                </div>
+                {/* After */}
+                <div className="relative">
+                  <div className="aspect-4/3 relative">
+                    <Image
+                      src={pair.after}
+                      alt={`After — ${pair.label}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                    />
+                  </div>
+                  <span className="absolute top-2 left-2 bg-brand-green/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    After
+                  </span>
+                </div>
+              </div>
+              <div className="px-5 py-3 flex items-center justify-between">
+                <p className="font-heading font-bold text-brand-dark text-sm">
+                  {pair.label}
+                </p>
+                <p className="text-brand-charcoal/50 text-xs">{pair.location}</p>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center">
+        <div className="text-center mt-10">
           <Link
             href="/our-work"
             className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-mid text-white font-bold text-base px-8 py-4 rounded-full shadow-lg transition-colors"

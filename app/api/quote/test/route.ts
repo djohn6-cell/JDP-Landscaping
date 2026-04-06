@@ -11,9 +11,13 @@ import twilio from "twilio";
  *   — or just open that URL in your browser.
  */
 export async function GET() {
-  // Guard: must explicitly opt in
+  // Hard block in production — no detail exposed
+  if (process.env.NODE_ENV === "production") {
+    return Response.json({ error: "Not found." }, { status: 404 });
+  }
+
+  // Guard: must explicitly opt in during development
   if (process.env.TEST_SMS_ENABLED !== "true") {
-    console.warn("[twilio-test] Blocked — TEST_SMS_ENABLED is not 'true'");
     return Response.json(
       { error: "Test mode is disabled. Set TEST_SMS_ENABLED=true in .env.local to enable." },
       { status: 403 }
