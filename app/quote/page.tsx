@@ -18,10 +18,10 @@ export default function QuotePage() {
             Free Estimate
           </p>
           <h1 className="font-heading font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
-            Request Your Free Quote
+            Get a Free Quote
           </h1>
           <p className="text-white/70 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Tell us about your property and we&apos;ll get back to you with an honest estimate. No contracts, no pressure.
+            No contracts, no pressure. Just honest work at a fair price.
           </p>
         </div>
       </section>
@@ -53,13 +53,14 @@ export default function QuotePage() {
       <section className="bg-brand-cream pb-20 lg:pb-28">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-brand-charcoal/60 text-sm leading-relaxed">
-            Your information stays with us — we never share it. Prefer to talk?{" "}
+            Questions?{" "}
             <a
               href="tel:+17049896027"
               className="text-brand-green font-semibold hover:underline"
             >
               Call (704) 989-6027
-            </a>
+            </a>{" "}
+            — we&apos;re happy to talk through anything.
           </p>
         </div>
       </section>

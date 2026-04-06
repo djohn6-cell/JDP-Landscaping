@@ -1,6 +1,11 @@
 import { NextRequest } from "next/server";
 import { sendQuoteSMS } from "@/lib/twilio";
 
+// ─── Feature flag ────────────────────────────────────────────────────────────
+// Set to `true` to re-enable the quote submission API.
+const QUOTE_ENABLED = false;
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Simple in-memory rate limiter: max 5 requests per IP per hour
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_MAX = 5;
@@ -22,6 +27,14 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export async function POST(request: NextRequest) {
+  // Feature-flagged off for launch
+  if (!QUOTE_ENABLED) {
+    return Response.json(
+      { error: "Online quote requests are temporarily unavailable. Please call us at (704) 989-6027." },
+      { status: 503 }
+    );
+  }
+
   // Rate limiting
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
