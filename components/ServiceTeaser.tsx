@@ -1,7 +1,8 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const services = [
+const services: { name: string; icon: React.ReactNode; img: string | null; imgAlt: string | null }[] = [
   {
     name: "Trimming",
     icon: <TrimIcon />,
