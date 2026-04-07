@@ -12,7 +12,7 @@ export default function QuotePage() {
     <main>
       {/* Hero strip */}
       <section className="relative bg-brand-dark pt-36 pb-16 sm:pt-40 sm:pb-20">
-        <div className="absolute inset-0 bg-[url('/images/projects/project-2-after.jpg')] bg-cover bg-center opacity-15" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[url('/images/newnew.png')] bg-cover bg-center opacity-15" aria-hidden="true" />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-brand-green-light font-semibold text-sm tracking-widest uppercase mb-4">
             Free Estimate
