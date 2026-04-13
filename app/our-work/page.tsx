@@ -88,30 +88,47 @@ export default function OurWorkPage() {
       {/* Services (reused component) */}
       <Services />
 
-      {/* Before & After Gallery — side-by-side */}
-      <section className="py-10 lg:py-14 bg-white">
+      {/* Before & After Gallery */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-8">
+
+          {/* Section header */}
+          <div className="text-center max-w-2xl mx-auto mb-5">
             <p className="text-brand-green font-semibold text-sm tracking-widest uppercase mb-3">
               Real Results
             </p>
-            <h2 className="font-heading font-black text-brand-dark text-2xl sm:text-3xl lg:text-4xl leading-tight mb-3">
+            <h2 className="font-heading font-black text-brand-dark text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
               See the Difference
             </h2>
-            <p className="text-brand-charcoal/70 text-sm sm:text-base">
-              Real results from properties across Charlotte, Ballantyne,
-              Matthews, and surrounding communities.
+            <p className="text-brand-charcoal/70 text-base sm:text-lg leading-relaxed">
+              Real transformations from real properties across Charlotte,
+              Ballantyne, Matthews, and surrounding communities.
             </p>
           </div>
 
-          {/* Before/After pairs — side by side */}
-          <div className="space-y-5 mb-8">
+          {/* Trust micro-bar */}
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mb-14 text-sm text-brand-charcoal/50">
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-green inline-block" aria-hidden="true" />
+              Charlotte · Ballantyne · Matthews · Waxhaw
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-green inline-block" aria-hidden="true" />
+              Free Estimates — No Contracts
+            </span>
+          </div>
+
+          {/* Before/After pairs */}
+          <div className="space-y-8 mb-14">
             {pairs.map((pair) => (
-              <div key={pair.label} className="rounded-xl overflow-hidden shadow-sm bg-brand-cream">
+              <div
+                key={pair.label}
+                className="rounded-2xl overflow-hidden bg-white border border-black/[0.06] shadow-[0_4px_20px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] transition-shadow duration-300"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   {/* Before */}
-                  <div className="relative">
-                    <div className="aspect-[16/9] relative">
+                  <div className="relative md:border-r md:border-black/[0.06]">
+                    <div className="aspect-[3/2] relative">
                       <Image
                         src={pair.before}
                         alt={`${pair.label} before — JDP Landscaping Charlotte NC`}
@@ -119,14 +136,15 @@ export default function OurWorkPage() {
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" aria-hidden="true" />
                     </div>
-                    <span className="absolute top-2 left-2 bg-brand-dark/70 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    <span className="absolute top-3 left-3 bg-white/95 text-brand-dark text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
                       Before
                     </span>
                   </div>
                   {/* After */}
-                  <div className="relative">
-                    <div className="aspect-[16/9] relative">
+                  <div className="relative border-t border-black/[0.06] md:border-t-0">
+                    <div className="aspect-[3/2] relative">
                       <Image
                         src={pair.after}
                         alt={`${pair.label} after — JDP Landscaping Charlotte NC`}
@@ -134,37 +152,59 @@ export default function OurWorkPage() {
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" aria-hidden="true" />
                     </div>
-                    <span className="absolute top-2 left-2 bg-brand-green/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    <span className="absolute top-3 left-3 bg-brand-green text-white text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
                       After
                     </span>
                   </div>
                 </div>
-                <div className="px-5 py-3 flex items-center justify-between">
-                  <p className="font-heading font-bold text-brand-dark text-sm">
-                    {pair.label}
-                  </p>
+                {/* Card footer */}
+                <div className="px-6 py-4 flex items-center justify-between bg-white border-t border-black/[0.05]">
+                  <div>
+                    <p className="font-heading font-bold text-brand-dark text-sm leading-snug">
+                      {pair.label}
+                    </p>
+                    <p className="text-brand-charcoal/40 text-xs mt-0.5">Charlotte, NC</p>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-brand-green/10 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                    <svg className="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Project photo grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {singles.map((photo) => (
-              <div
-                key={photo.src}
-                className="aspect-[4/3] rounded-xl overflow-hidden shadow-sm group"
-              >
-                <Image
-                  src={photo.src}
-                  alt={`${photo.label} — JDP Landscaping Charlotte NC`}
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            ))}
+          <div>
+            <p className="text-brand-charcoal/40 text-xs uppercase tracking-widest mb-5 text-center">
+              More Projects
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+              {singles.map((photo) => (
+                <div
+                  key={photo.src}
+                  className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-brand-cream shadow-sm"
+                >
+                  <Image
+                    src={photo.src}
+                    alt={`${photo.label} — JDP Landscaping Charlotte NC`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 50vw, 25vw"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-brand-dark/65 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    aria-hidden="true"
+                  />
+                  <p className="absolute bottom-0 inset-x-0 px-3 py-2.5 text-white text-xs font-semibold leading-snug translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    {photo.label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

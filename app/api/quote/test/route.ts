@@ -5,13 +5,14 @@ import twilio from "twilio";
  *
  * Sends a single hardcoded test SMS to OWNER_PHONE_NUMBER via Twilio.
  * Disabled unless TEST_SMS_ENABLED=true in your .env.local.
+ * Blocked entirely in production (returns 404).
  *
  * Trigger with:
  *   curl http://localhost:3000/api/quote/test
  *   — or just open that URL in your browser.
  */
 export async function GET() {
-  // Hard block in production — no detail exposed
+  // Hard block in production — returns 404 with no detail (C1 fix)
   if (process.env.NODE_ENV === "production") {
     return Response.json({ error: "Not found." }, { status: 404 });
   }
@@ -19,7 +20,7 @@ export async function GET() {
   // Guard: must explicitly opt in during development
   if (process.env.TEST_SMS_ENABLED !== "true") {
     return Response.json(
-      { error: "Test mode is disabled. Set TEST_SMS_ENABLED=true in .env.local to enable." },
+      { error: "Test mode is disabled." },
       { status: 403 }
     );
   }
@@ -29,24 +30,18 @@ export async function GET() {
   const from = process.env.TWILIO_PHONE_NUMBER;
   const to = process.env.OWNER_PHONE_NUMBER;
 
-  // Log which vars are present so missing ones are obvious
+  // Log which vars are present — server-side only, never in response body (C1 fix)
   console.log("[twilio-test] Env check:", {
     TWILIO_ACCOUNT_SID: sid ? `${sid.slice(0, 6)}…` : "MISSING",
     TWILIO_AUTH_TOKEN: token ? "set" : "MISSING",
-    TWILIO_PHONE_NUMBER: from ?? "MISSING",
-    OWNER_PHONE_NUMBER: to ?? "MISSING",
+    TWILIO_PHONE_NUMBER: from ? "set" : "MISSING",
+    OWNER_PHONE_NUMBER: to ? "set" : "MISSING",
   });
 
   if (!sid || !token || !from || !to) {
-    const missing = [
-      !sid && "TWILIO_ACCOUNT_SID",
-      !token && "TWILIO_AUTH_TOKEN",
-      !from && "TWILIO_PHONE_NUMBER",
-      !to && "OWNER_PHONE_NUMBER",
-    ].filter(Boolean);
-    console.error("[twilio-test] Missing env vars:", missing);
+    // Do not list which vars are missing in the response body (C1 fix)
     return Response.json(
-      { error: "Missing required env vars", missing },
+      { error: "SMS configuration incomplete. Check server logs." },
       { status: 500 }
     );
   }
@@ -63,29 +58,22 @@ export async function GET() {
     console.log("[twilio-test] SMS sent successfully:", {
       sid: msg.sid,
       status: msg.status,
-      to: msg.to,
-      from: msg.from,
     });
 
     return Response.json({
       success: true,
       messageSid: msg.sid,
       status: msg.status,
-      to: msg.to,
     });
   } catch (err: unknown) {
-    const error = err as { message?: string; code?: number; status?: number };
+    const error = err as { message?: string; code?: number };
+    // Log details server-side only — never expose raw SDK errors in response body (C1 fix)
     console.error("[twilio-test] Twilio error:", {
       message: error.message,
       code: error.code,
-      status: error.status,
     });
     return Response.json(
-      {
-        success: false,
-        error: error.message ?? "Unknown Twilio error",
-        code: error.code,
-      },
+      { success: false, error: "SMS delivery failed." },
       { status: 500 }
     );
   }

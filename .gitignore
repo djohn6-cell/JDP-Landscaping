@@ -42,3 +42,10 @@ public/videos/showcase-compressed.mp4
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# graphify knowledge graph output
+graphify-out/
+
+# claude code tooling
+.claude/
+.graphify_*

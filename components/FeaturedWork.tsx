@@ -39,49 +39,58 @@ export default function FeaturedWork() {
         </div>
 
         {/* 3 before/after pairs */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           {pairs.map((pair) => (
             <div
               key={pair.label}
-              className="rounded-2xl overflow-hidden border border-black/5 shadow-sm bg-brand-cream"
+              className="rounded-2xl overflow-hidden bg-white border border-black/[0.06] shadow-[0_4px_20px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] transition-shadow duration-300"
             >
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-1 md:grid-cols-2">
                 {/* Before */}
-                <div className="relative">
-                  <div className="aspect-4/3 relative">
+                <div className="relative md:border-r md:border-black/[0.06]">
+                  <div className="aspect-[3/2] relative">
                     <Image
                       src={pair.before}
                       alt={`Before — ${pair.label}`}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" aria-hidden="true" />
                   </div>
-                  <span className="absolute top-2 left-2 bg-brand-dark/70 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                  <span className="absolute top-3 left-3 bg-white/95 text-brand-dark text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
                     Before
                   </span>
                 </div>
                 {/* After */}
-                <div className="relative">
-                  <div className="aspect-4/3 relative">
+                <div className="relative border-t border-black/[0.06] md:border-t-0">
+                  <div className="aspect-[3/2] relative">
                     <Image
                       src={pair.after}
                       alt={`After — ${pair.label}`}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" aria-hidden="true" />
                   </div>
-                  <span className="absolute top-2 left-2 bg-brand-green/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                  <span className="absolute top-3 left-3 bg-brand-green text-white text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
                     After
                   </span>
                 </div>
               </div>
-              <div className="px-5 py-3 flex items-center justify-between">
-                <p className="font-heading font-bold text-brand-dark text-sm">
-                  {pair.label}
-                </p>
-                <p className="text-brand-charcoal/50 text-xs">{pair.location}</p>
+              <div className="px-6 py-4 flex items-center justify-between bg-white border-t border-black/[0.05]">
+                <div>
+                  <p className="font-heading font-bold text-brand-dark text-sm leading-snug">
+                    {pair.label}
+                  </p>
+                  <p className="text-brand-charcoal/40 text-xs mt-0.5">{pair.location}</p>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-brand-green/10 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                  <svg className="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
               </div>
             </div>
           ))}

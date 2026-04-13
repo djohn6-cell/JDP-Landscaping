@@ -18,6 +18,11 @@ function getClient() {
   return _client;
 }
 
+// Strip characters that could enable SMS header injection (C2 fix)
+function sanitize(s: string): string {
+  return s.replace(/[\r\n\t]/g, " ").trim();
+}
+
 export async function sendQuoteSMS({
   firstName,
   lastName,
@@ -26,6 +31,8 @@ export async function sendQuoteSMS({
   address,
   service,
   message,
+  preferredContact,
+  smsConsent,
 }: {
   firstName: string;
   lastName: string;
@@ -34,6 +41,8 @@ export async function sendQuoteSMS({
   address: string;
   service: string;
   message: string;
+  preferredContact?: string;
+  smsConsent?: boolean;
 }) {
   const from = process.env.TWILIO_PHONE_NUMBER?.trim();
   const to = process.env.OWNER_PHONE_NUMBER?.trim();
@@ -44,14 +53,25 @@ export async function sendQuoteSMS({
     );
   }
 
+  const contactLabel: Record<string, string> = {
+    phone: "Phone Call",
+    text: "Text Message",
+    email: "Email",
+    any: "No Preference",
+  };
+
   const body = [
     "📋 New Quote Request — JDP Landscaping",
-    `Name: ${firstName} ${lastName}`,
-    `Phone: ${phone}`,
-    `Email: ${email}`,
-    `Address: ${address}`,
-    service ? `Service: ${service}` : null,
-    message ? `Note: ${message}` : null,
+    `Name: ${sanitize(firstName)} ${sanitize(lastName)}`,
+    phone ? `Phone: ${sanitize(phone)}` : null,
+    email ? `Email: ${sanitize(email)}` : null,
+    `Address: ${sanitize(address)}`,
+    service ? `Service: ${sanitize(service)}` : null,
+    preferredContact
+      ? `Preferred Contact: ${sanitize(contactLabel[preferredContact] ?? preferredContact)}`
+      : null,
+    `SMS Opt-In: ${smsConsent ? "✅ Yes — may send SMS for follow-up" : "❌ No — use phone/email only"}`,
+    message ? `Note: ${sanitize(message)}` : null,
   ]
     .filter(Boolean)
     .join("\n");
