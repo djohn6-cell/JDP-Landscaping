@@ -2,9 +2,24 @@ import type { Metadata } from "next";
 import QuoteForm from "@/components/QuoteForm";
 
 export const metadata: Metadata = {
-  title: "Request a Free Quote | JDP Landscaping | Marvin & Waxhaw NC",
+  title: "Request a Free Quote | JDP Landscaping | Charlotte, NC",
   description:
-    "Get a free, no-obligation landscaping quote for your property in Marvin, Waxhaw, and surrounding areas. Tell us what you need and we'll get back to you quickly.",
+    "Get a free, no-obligation landscaping quote for your property in Charlotte, Marvin, Waxhaw, and surrounding areas. Tell us what you need and we'll get back to you quickly.",
+  alternates: { canonical: "/quote" },
+  openGraph: {
+    title: "Request a Free Quote | JDP Landscaping",
+    description:
+      "Free landscaping estimates for Charlotte, Marvin, Waxhaw, and surrounding areas. No contracts, no pressure.",
+    url: "/quote",
+    images: [
+      {
+        url: "/images/projects/project-2-after.jpg",
+        width: 1200,
+        height: 630,
+        alt: "JDP Landscaping — Charlotte, NC",
+      },
+    ],
+  },
 };
 
 export default function QuotePage() {

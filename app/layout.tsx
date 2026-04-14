@@ -48,6 +48,7 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
+  "@id": siteUrl,
   name: "JDP Landscaping",
   description:
     "Honest, high-quality landscaping in Charlotte, Marvin, Waxhaw, and surrounding areas. Trimming, mulching, removal, planting, and more.",
@@ -61,18 +62,29 @@ const localBusinessSchema = {
     addressCountry: "US",
   },
   areaServed: [
-    "Charlotte, NC",
-    "Marvin, NC",
-    "Waxhaw, NC",
-    "Ballantyne, NC",
-    "Pineville, NC",
-    "Matthews, NC",
-    "Indian Trail, NC",
-    "Stallings, NC",
-    "Mint Hill, NC",
-    "Union County, NC",
+    { "@type": "City", name: "Charlotte", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Marvin", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Waxhaw", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Ballantyne", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Pineville", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Matthews", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Indian Trail", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Stallings", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Mint Hill", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Huntersville", addressRegion: "NC", addressCountry: "US" },
+    { "@type": "City", name: "Concord", addressRegion: "NC", addressCountry: "US" },
   ],
-  knowsAbout: ["Lawn Trimming", "Mulching", "Tree and Shrub Removal", "Planting", "Landscaping"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Landscaping Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Lawn Trimming" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mulching" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tree and Shrub Removal" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Planting" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yard Cleanup" } },
+    ],
+  },
 };
 
 export default function RootLayout({

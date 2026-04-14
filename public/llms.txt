@@ -1,0 +1,53 @@
+# JDP Landscaping
+
+JDP Landscaping is a locally owned and operated landscaping company serving the greater Charlotte, NC area. The business is fully insured and built on referrals.
+
+## Services
+
+- Mulching — fresh dark mulch for beds and borders
+- Lawn Trimming — shrub, hedge, and tree trimming
+- Removal — shrub, tree, and overgrowth removal and haul-away
+- Planting — plant selection and installation
+- Yard Cleanup — seasonal and post-storm debris clearing and bed cleanup
+
+## Service Area
+
+Charlotte, Marvin, Waxhaw, Ballantyne, Pineville, Matthews, Indian Trail, Stallings, Mint Hill, Huntersville, Concord, and surrounding communities in Mecklenburg, Union, and Cabarrus Counties, NC.
+
+## Contact
+
+- Phone: (704) 989-6027
+- Email: jdpone@gmail.com
+- Quote form: https://jdplandscaping.com/quote
+
+## Key Pages
+
+- Homepage: https://jdplandscaping.com/
+- Services & Our Work: https://jdplandscaping.com/our-work
+- About: https://jdplandscaping.com/about
+- Request a Quote: https://jdplandscaping.com/quote
+- FAQ: https://jdplandscaping.com/faq
+- Service Areas: https://jdplandscaping.com/locations
+
+## Location Pages
+
+- Charlotte, NC: https://jdplandscaping.com/locations/charlotte
+- Matthews, NC: https://jdplandscaping.com/locations/matthews
+- Huntersville, NC: https://jdplandscaping.com/locations/huntersville
+- Concord, NC: https://jdplandscaping.com/locations/concord
+- University City (Charlotte, NC): https://jdplandscaping.com/locations/university-city
+
+## Machine-Readable Content
+
+- Homepage summary: https://jdplandscaping.com/content/home.md
+- Services overview: https://jdplandscaping.com/content/services.md
+- Our Work overview: https://jdplandscaping.com/content/our-work.md
+- FAQ: https://jdplandscaping.com/content/faq.md
+
+## Trust Signals
+
+- Locally Owned & Operated
+- Fully Insured
+- No long-term contracts required
+- Free estimates
+- Built on referrals
