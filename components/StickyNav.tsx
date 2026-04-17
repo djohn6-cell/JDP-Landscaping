@@ -30,16 +30,16 @@ export default function StickyNav() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="flex items-center justify-between h-28">
+      <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 lg:px-16">
+        <div className="flex h-20 items-center justify-between sm:h-28">
           {/* Logo */}
-          <Link href="/#hero" className="flex items-center gap-3 shrink-0">
+          <Link href="/#hero" className="flex shrink-0 items-center gap-2 sm:gap-3">
             <Image
               src="/images/logo.jpeg"
               alt="JDP Landscaping logo"
               width={72}
               height={72}
-              className="rounded object-contain"
+              className="h-11 w-11 rounded object-contain sm:h-[72px] sm:w-[72px]"
             />
             <span className="text-white font-heading font-bold text-xl tracking-wide hidden sm:block drop-shadow-sm">
               JDP LANDSCAPING
@@ -70,7 +70,7 @@ export default function StickyNav() {
           </nav>
 
           {/* Phone + hamburger */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="tel:+17049896027"
               className="hidden sm:flex items-center gap-2 border border-white/30 hover:border-white/60 text-white text-base font-semibold px-5 py-2.5 rounded-full transition-colors"
@@ -85,7 +85,7 @@ export default function StickyNav() {
               Request a Quote
             </a>
             <button
-              className="md:hidden text-white p-1 drop-shadow-sm"
+              className="p-2 text-white drop-shadow-sm md:hidden"
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
             >
