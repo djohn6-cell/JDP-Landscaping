@@ -22,39 +22,40 @@ export default function Hero() {
 
       {/* Hero content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <p className="text-brand-green-light text-sm sm:text-base font-bold tracking-[0.2em] uppercase mb-4">
-          Waxhaw, Marvin and Surrounding Areas
+        <p className="text-brand-green-light text-xs sm:text-sm font-bold tracking-[0.22em] uppercase mb-5">
+          Waxhaw&nbsp;•&nbsp;Marvin&nbsp;•&nbsp;Weddington&nbsp;•&nbsp;Indian Land&nbsp;•&nbsp;Surrounding Areas
         </p>
 
-        <h1 className="font-heading font-black text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6">
-          Outdoor Spaces Done Right —{" "}
-          <span className="text-brand-green-light italic">
+        <h1 className="font-heading font-black text-white leading-tight mb-3">
+          <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+            Outdoor Spaces Done Right
+          </span>
+          <span className="block text-xl sm:text-2xl md:text-3xl font-bold text-brand-green-light italic tracking-wide mt-2">
             Integrity Over Profit
           </span>
         </h1>
 
-        <p className="text-white/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-          Honest, high-quality landscaping built to last. Get a free quote with
-          no pressure, and call us for anything you need around your property.
+        <p className="text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+          Built on honesty, punctuality, and results that speak for themselves.
         </p>
 
         {/* CTA cluster — primary focal point */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-5">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center w-full sm:w-auto">
             {/* Primary CTA */}
             <a
               href="/quote"
-              className="inline-flex items-center justify-center gap-2.5 bg-brand-green-light hover:bg-brand-green text-white font-black text-lg sm:text-xl px-10 py-5 rounded-full transition-all duration-300 w-full sm:w-auto"
-              style={{ boxShadow: "0 0 40px rgba(61,143,66,0.5), 0 4px 20px rgba(0,0,0,0.4)" }}
+              className="inline-flex items-center justify-center gap-3 bg-brand-green-light hover:bg-brand-green text-white font-black text-xl sm:text-2xl px-12 py-6 rounded-full transition-all duration-300 w-full sm:w-auto"
+              style={{ boxShadow: "0 0 50px rgba(61,143,66,0.55), 0 6px 24px rgba(0,0,0,0.45)" }}
             >
               Get a Free Quote
               <ArrowRightIcon />
             </a>
 
-            {/* Phone CTA — solid white, visually equal weight to primary */}
+            {/* Phone CTA — prominent secondary */}
             <a
               href="tel:+17049896027"
-              className="inline-flex items-center justify-center gap-3 bg-white/95 hover:bg-white text-brand-dark font-bold text-base sm:text-lg px-8 py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-3 bg-white/95 hover:bg-white text-brand-dark font-bold text-lg sm:text-xl px-10 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto"
             >
               <PhoneIcon />
               <span>(704) 989-6027</span>

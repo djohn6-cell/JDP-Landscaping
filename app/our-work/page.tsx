@@ -31,8 +31,8 @@ const pairs = [
     label: "Property Transformation",
   },
   {
-    before: "/images/projects/project-3-before.jpg",
-    after: "/images/projects/project-3-after.jpg",
+    before: "/images/projects/IMG_4413.jpg",
+    after: "/images/projects/IMG_4410.jpg",
     label: "Landscaping & Cleanup",
   },
 ];

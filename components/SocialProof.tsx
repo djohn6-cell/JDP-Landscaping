@@ -29,7 +29,7 @@ const reviews = [
     platform: "nextdoor",
     author: "Verified Neighbors on Nextdoor",
     rating: 5,
-    body: "JDP Landscaping comes highly recommended for their excellent lawn service, mulch installation, and home care. Customers praise owner James Picerno for his hard work, professionalism, and great ideas. His crew is known for their punctuality, meticulous work, and courteous demeanor.",
+    body: "James - Andy and I once again can't thank you enough for all your help with getting our yard looking great again! You and your team always do such an outstanding job! We appreciate you and your teams hard work at removing and planting new trees along with extensive yard cleanup. Your knowledge of landscape and tips is very helpful. As an apartment property manager, I've dealt with a lot of contractors that are not reliable. James and his team are truly the best!",
     linkLabel: "See all recommendations →",
     linkHref: "https://nextdoor.com/pages/jdp-landscaping-waxhaw-nc/",
   },
@@ -37,10 +37,10 @@ const reviews = [
 
 export default function SocialProof() {
   return (
-    <section className="py-16 lg:py-24 bg-white">
+    <section className="py-10 lg:py-14 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <p className="text-brand-green font-semibold text-sm tracking-widest uppercase mb-3">
             Reviews
           </p>
@@ -89,7 +89,7 @@ export default function SocialProof() {
         </div>
 
         {/* Condensed differentiators — why they keep coming back */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
           {differentiators.map((d) => (
             <div
               key={d.title}

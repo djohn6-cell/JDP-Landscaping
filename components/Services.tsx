@@ -15,14 +15,18 @@ const services = [
     description: "Seasonal and post-storm cleanups — debris removed, beds cleared, property looking fresh.",
     icon: <DecorIcon />,
     images: [
-      { src: "/images/services/planting.jpg", label: null },
+      { src: "/images/services/cleanup-before.jpg", label: "Before" },
+      { src: "/images/services/cleanup-after.jpg", label: "After", className: "rotate-180" },
     ],
   },
   {
     name: "Removal",
     description: "Trees, shrubs, and overgrowth — cleared cleanly and hauled away.",
     icon: <RemoveIcon />,
-    images: [],
+    images: [
+      { src: "/images/services/removal-before-v2.jpg", label: "Before" },
+      { src: "/images/services/removal-after-v2.jpg", label: "After" },
+    ],
   },
   {
     name: "Trimming",
@@ -38,7 +42,8 @@ const services = [
     description: "The right plants in the right places, chosen for your soil, space, and style.",
     icon: <PlantIcon />,
     images: [
-      { src: "/images/projects/ba3-before.jpg", label: null },
+      { src: "/images/services/planting-before.jpg", label: "Before" },
+      { src: "/images/services/planting-after.jpg", label: "After" },
     ],
   },
 ];
@@ -82,7 +87,7 @@ export default function Services() {
                         src={img.src}
                         alt={`${img.label ? img.label + " — " : ""}${service.name} — JDP Landscaping`}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className={`object-cover group-hover:scale-105 transition-transform duration-500 ${img.className ?? ""}`}
                         sizes="(max-width: 640px) 33vw, 17vw"
                       />
                       {img.label && (
@@ -104,7 +109,7 @@ export default function Services() {
                         src={img.src}
                         alt={`${img.label ? img.label + " — " : ""}${service.name} — JDP Landscaping`}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className={`object-cover group-hover:scale-105 transition-transform duration-500 ${img.className ?? ""}`}
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 17vw"
                       />
                       {img.label && (

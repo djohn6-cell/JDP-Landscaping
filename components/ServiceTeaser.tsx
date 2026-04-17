@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const services: { name: string; icon: React.ReactNode; img: string | null; imgAlt: string | null }[] = [
+const services: { name: string; icon: React.ReactNode; img: string | null; imgAlt: string | null; beforeAfter?: { before: string; after: string; beforePos?: string; afterPos?: string; afterClassName?: string } }[] = [
   {
     name: "Trimming",
     icon: <TrimIcon />,
@@ -19,19 +19,36 @@ const services: { name: string; icon: React.ReactNode; img: string | null; imgAl
     name: "Removal",
     icon: <RemoveIcon />,
     img: null,
-    imgAlt: null,
+    imgAlt: "Tree and shrub removal — JDP Landscaping Charlotte NC",
+    beforeAfter: {
+      before: "/images/services/removal-before-v2.jpg",
+      after: "/images/services/removal-after-v2.jpg",
+      beforePos: "center 40%",
+      afterPos: "center 50%",
+    },
   },
   {
     name: "Planting",
     icon: <PlantIcon />,
-    img: "/images/projects/ba3-before.jpg",
-    imgAlt: "Garden planting and landscaping — JDP Landscaping Charlotte NC",
+    img: null,
+    imgAlt: "Garden planting — JDP Landscaping Charlotte NC",
+    beforeAfter: {
+      before: "/images/services/planting-before.jpg",
+      after: "/images/services/planting-after.jpg",
+    },
   },
   {
     name: "Cleanups",
     icon: <CleanupIcon />,
-    img: "/images/services/planting.jpg",
+    img: null,
     imgAlt: "Property cleanup — JDP Landscaping Charlotte NC",
+    beforeAfter: {
+      before: "/images/services/cleanup-before.jpg",
+      after: "/images/services/cleanup-after.jpg",
+      beforePos: "center 40%",
+      afterPos: "center 40%",
+      afterClassName: "rotate-180",
+    },
   },
 ];
 
@@ -59,7 +76,38 @@ export default function ServiceTeaser() {
               key={service.name}
               className="bg-white rounded-2xl overflow-hidden shadow-sm border border-black/5 group hover:shadow-md transition-shadow duration-200"
             >
-              {service.img ? (
+              {service.beforeAfter ? (
+                <div className="aspect-[4/3] flex overflow-hidden">
+                  <div className="relative flex-1 min-w-0 overflow-hidden">
+                    <Image
+                      src={service.beforeAfter.before}
+                      alt={`Before — ${service.name} — JDP Landscaping`}
+                      width={600}
+                      height={800}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={{ objectPosition: service.beforeAfter.beforePos ?? "center" }}
+                      sizes="(max-width: 640px) 25vw, (max-width: 1024px) 17vw, 10vw"
+                    />
+                    <span className="absolute top-1.5 left-1.5 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wide bg-brand-dark/70 z-10">
+                      Before
+                    </span>
+                  </div>
+                  <div className="relative flex-1 min-w-0 overflow-hidden">
+                    <Image
+                      src={service.beforeAfter.after}
+                      alt={`After — ${service.name} — JDP Landscaping`}
+                      width={600}
+                      height={800}
+                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${service.beforeAfter.afterClassName ?? ""}`}
+                      style={{ objectPosition: service.beforeAfter.afterPos ?? "center" }}
+                      sizes="(max-width: 640px) 25vw, (max-width: 1024px) 17vw, 10vw"
+                    />
+                    <span className="absolute top-1.5 left-1.5 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wide bg-brand-green/90 z-10">
+                      After
+                    </span>
+                  </div>
+                </div>
+              ) : service.img ? (
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
                     src={service.img}
