@@ -93,6 +93,28 @@ export default function StickyNav() {
             </button>
           </div>
         </div>
+
+        <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-white/10 py-2 md:hidden">
+          {navLinks.map((link) =>
+            link.href.startsWith("/#") ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors hover:text-white"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors hover:text-white"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
+        </nav>
       </div>
 
       {/* Mobile menu */}
