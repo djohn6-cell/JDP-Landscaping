@@ -1,6 +1,23 @@
 import type { NextConfig } from "next";
+import { networkInterfaces } from "node:os";
 
 const isProd = process.env.NODE_ENV === "production";
+const allowedDevOrigins = Array.from(
+  new Set([
+    "localhost",
+    "127.0.0.1",
+    ...Object.values(networkInterfaces())
+      .flat()
+      .filter(
+        (network): network is NonNullable<typeof network> =>
+          Boolean(network) &&
+          network.family === "IPv4" &&
+          !network.internal &&
+          !network.address.startsWith("169.254.")
+      )
+      .map((network) => network.address),
+  ])
+);
 
 const securityHeaders = [
   // Prevent clickjacking
@@ -11,8 +28,10 @@ const securityHeaders = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   // Restrict browser features
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-  // Enforce HTTPS for 1 year
-  { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+  // Enforce HTTPS for 1 year in production only.
+  ...(isProd
+    ? [{ key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" }]
+    : []),
   // Disable DNS prefetching to prevent leaking browsing context to DNS resolvers (M2 fix)
   { key: "X-DNS-Prefetch-Control", value: "off" },
   // Content Security Policy
@@ -33,13 +52,18 @@ const securityHeaders = [
       "frame-src 'none'",
       "form-action 'self'",
       "frame-ancestors 'none'",
-      "upgrade-insecure-requests",
+      ...(isProd ? ["upgrade-insecure-requests"] : []),
     ].join("; "),
   },
 ];
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins,
   async headers() {
+    if (!isProd) {
+      return [];
+    }
+
     return [
       {
         source: "/(.*)",

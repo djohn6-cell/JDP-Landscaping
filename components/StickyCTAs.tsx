@@ -1,10 +1,49 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
 export default function StickyCTAs() {
+  const pathname = usePathname();
+  const [heroInView, setHeroInView] = useState(true);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      return;
+    }
+
+    const hero = document.getElementById("hero");
+    if (!hero) {
+      const fallback = window.setTimeout(() => setHeroInView(false), 0);
+      return () => window.clearTimeout(fallback);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHeroInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.35,
+        rootMargin: "0px 0px -12% 0px",
+      }
+    );
+
+    observer.observe(hero);
+
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const showHomepageCTAs = pathname !== "/" || !heroInView;
+
   return (
     <>
-
-      {/* Vertical brand text — right edge */}
+      {/* Vertical brand text - right edge */}
       <div
-        className="fixed right-0 bottom-24 z-30 hidden xl:block pointer-events-none select-none"
+        className={`fixed right-0 bottom-24 z-30 hidden select-none transition-all duration-300 xl:block ${
+          showHomepageCTAs
+            ? "pointer-events-none translate-x-0 opacity-100"
+            : "pointer-events-none translate-x-4 opacity-0"
+        }`}
         aria-hidden="true"
       >
         <span className="vertical-brand text-white/10 font-heading font-black text-sm tracking-widest uppercase">
@@ -13,17 +52,26 @@ export default function StickyCTAs() {
       </div>
 
       {/* Mobile bottom bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden flex bg-brand-dark border-t border-white/10">
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-40 flex border-t border-white/10 bg-brand-dark transition-all duration-300 lg:hidden ${
+          showHomepageCTAs
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-full opacity-0"
+        }`}
+        aria-hidden={!showHomepageCTAs}
+      >
         <a
           href="tel:+17049896027"
-          className="flex-1 flex items-center justify-center gap-2 bg-brand-dark hover:bg-white/10 text-white text-sm font-bold py-3.5 transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 bg-brand-dark py-3.5 text-sm font-bold text-white transition-colors hover:bg-white/10"
+          tabIndex={showHomepageCTAs ? 0 : -1}
         >
           <PhoneIcon />
           Call Now
         </a>
         <a
           href="/quote"
-          className="flex-1 flex items-center justify-center gap-2 bg-brand-green text-white text-sm font-bold py-3.5 transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 bg-brand-green py-3.5 text-sm font-bold text-white transition-colors"
+          tabIndex={showHomepageCTAs ? 0 : -1}
         >
           <QuoteIcon />
           Free Quote

@@ -193,7 +193,7 @@ export default function QuoteForm({ standalone = false }: { standalone?: boolean
         {/* Service */}
         <div>
           <label className="block text-sm font-semibold text-brand-dark mb-1.5" htmlFor="service">
-            Service Needed
+            Services (optional)
           </label>
           <select
             id="service"
@@ -202,7 +202,7 @@ export default function QuoteForm({ standalone = false }: { standalone?: boolean
             onChange={handleChange}
             className={`${inputClass} bg-white`}
           >
-            <option value="">Select a service (optional)</option>
+            <option value="">Description</option>
             {serviceOptions.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}

@@ -38,7 +38,7 @@ export default function PrivacyPage() {
               business serving Charlotte, Marvin, Waxhaw, and surrounding areas
               in North Carolina. This privacy policy explains what information
               we collect through this website, how we use it, and how we protect
-              it. We keep things simple — we're a small business, not a tech
+              it. We keep things simple — we&apos;re a small business, not a tech
               company.
             </p>
           </section>
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
               <li>Phone number (optional)</li>
               <li>Email address (optional)</li>
               <li>Property address</li>
-              <li>Type of service you're interested in</li>
+              <li>Type of service you&apos;re interested in</li>
               <li>Any notes or details about your project</li>
             </ul>
             <p className="text-base leading-relaxed mt-3">
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
             </h2>
             <p className="text-base leading-relaxed">
               We use the information you submit for one purpose only: to follow
-              up on your quote request. When you reach out to us, we'll contact
+              up on your quote request. When you reach out to us, we&apos;ll contact
               you by phone or email to discuss your landscaping needs, schedule
               a visit, or answer your questions. We do not use your information
               for marketing, advertising, or any other purpose.
@@ -98,7 +98,7 @@ export default function PrivacyPage() {
               submitting a form here.
             </p>
             <p className="text-base leading-relaxed">
-              Twilio's handling of data in transit is governed by their own
+              Twilio&apos;s handling of data in transit is governed by their own
               privacy policy. We do not store your information with Twilio
               beyond what is necessary for message delivery.
             </p>
@@ -132,7 +132,7 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="font-heading font-bold text-brand-dark text-xl mb-3">
-              Children's Privacy
+              Children&apos;s Privacy
             </h2>
             <p className="text-base leading-relaxed">
               This website is intended for general audiences and is not directed
@@ -146,8 +146,8 @@ export default function PrivacyPage() {
               Changes to This Policy
             </h2>
             <p className="text-base leading-relaxed">
-              If we update this policy, we'll revise the effective date at the
-              top of this page. We don't anticipate frequent changes — our data
+              If we update this policy, we&apos;ll revise the effective date at the
+              top of this page. We don&apos;t anticipate frequent changes — our data
               practices are straightforward and unlikely to change significantly.
             </p>
           </section>
@@ -158,7 +158,7 @@ export default function PrivacyPage() {
             </h2>
             <p className="text-base leading-relaxed">
               Questions about this policy or how we handle your information?
-              Get in touch — we're happy to talk through it.
+              Get in touch — we&apos;re happy to talk through it.
             </p>
             <ul className="mt-3 space-y-2 text-base">
               <li>

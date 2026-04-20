@@ -5,8 +5,8 @@ const differentiators = [
     icon: <ClockIcon />,
   },
   {
-    title: "Built on referrals, not advertising",
-    detail: "Most of our business comes from neighbors telling neighbors.",
+    title: "Competitive pricing",
+    detail: "Fair quotes, clear value, no surprises.",
     icon: <ReferralIcon />,
   },
   {
@@ -89,18 +89,20 @@ export default function SocialProof() {
         </div>
 
         {/* Condensed differentiators — why they keep coming back */}
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto">
           {differentiators.map((d) => (
             <div
               key={d.title}
-              className="flex items-start gap-3 p-5 rounded-2xl bg-brand-cream border border-black/5"
+              className="flex items-start gap-2 sm:gap-3 p-4 sm:p-5 rounded-2xl bg-brand-cream border border-black/5"
             >
               <div className="text-brand-green mt-0.5 shrink-0">{d.icon}</div>
               <div>
-                <p className="font-heading font-bold text-brand-dark text-sm leading-snug mb-1">
+                <p className="font-heading font-bold text-brand-dark text-[13px] sm:text-sm leading-snug mb-0.5 sm:mb-1">
                   {d.title}
                 </p>
-                <p className="text-brand-charcoal/60 text-xs leading-relaxed">{d.detail}</p>
+                <p className="text-brand-charcoal/60 text-[11px] sm:text-xs leading-snug sm:leading-relaxed">
+                  {d.detail}
+                </p>
               </div>
             </div>
           ))}

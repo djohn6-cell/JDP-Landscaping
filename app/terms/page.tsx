@@ -37,8 +37,8 @@ export default function TermsPage() {
               This website is operated by JDP Landscaping, a locally owned
               landscaping business serving Charlotte, Marvin, Waxhaw, and
               surrounding areas in North Carolina. By using this site, you
-              agree to these terms. If you don't agree, please don't use the
-              site — though we'd still be happy to hear from you by phone.
+              agree to these terms. If you don&apos;t agree, please don&apos;t use the
+              site — though we&apos;d still be happy to hear from you by phone.
             </p>
           </section>
 
@@ -82,7 +82,7 @@ export default function TermsPage() {
               accurate. That said, service descriptions, service area details,
               and other content are general in nature and may not reflect every
               situation. If you have a specific question, please call or email
-              us directly — we'll give you a straight answer.
+              us directly — we&apos;ll give you a straight answer.
             </p>
           </section>
 
@@ -94,7 +94,7 @@ export default function TermsPage() {
               JDP Landscaping is a fully insured landscaping business. All work
               is performed by our own crew. While we take pride in every job,
               specific outcomes depend on site conditions, weather, plant health,
-              and other factors outside our control. We'll always give you an
+              and other factors outside our control. We&apos;ll always give you an
               honest assessment before we begin any work.
             </p>
           </section>
@@ -117,7 +117,7 @@ export default function TermsPage() {
             </h2>
             <p className="text-base leading-relaxed">
               This site may include links to third-party websites (such as
-              Google Maps). We don't control those sites and aren't responsible
+              Google Maps). We don&apos;t control those sites and aren&apos;t responsible
               for their content or privacy practices.
             </p>
           </section>
@@ -139,7 +139,7 @@ export default function TermsPage() {
               Contact Us
             </h2>
             <p className="text-base leading-relaxed">
-              Questions about these terms? We're real people — just reach out.
+              Questions about these terms? We&apos;re real people — just reach out.
             </p>
             <ul className="mt-3 space-y-2 text-base">
               <li>

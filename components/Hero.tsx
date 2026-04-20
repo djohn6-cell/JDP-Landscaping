@@ -28,11 +28,11 @@ export default function Hero() {
 
         <h1 className="mx-auto mb-3 font-heading font-black leading-[0.95] text-white sm:max-w-none sm:leading-tight">
           <span className="block text-[clamp(2.25rem,10vw,3rem)] sm:hidden">
-            <span className="block whitespace-nowrap">Outdoor Spaces</span>
+            <span className="block whitespace-nowrap">Landscaping</span>
             <span className="block whitespace-nowrap">Done Right</span>
           </span>
           <span className="hidden text-3xl sm:block sm:text-5xl md:text-6xl lg:text-7xl">
-            Outdoor Spaces Done Right
+            Landscaping Done Right
           </span>
           <span className="mt-1.5 block text-lg font-bold italic tracking-wide text-brand-green-light sm:mt-2 sm:text-2xl md:text-3xl">
             Integrity Over Profit
