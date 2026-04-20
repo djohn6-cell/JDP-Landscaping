@@ -6,16 +6,16 @@ const allowedDevOrigins = Array.from(
   new Set([
     "localhost",
     "127.0.0.1",
-    ...Object.values(networkInterfaces())
-      .flat()
-      .filter(
-        (network): network is NonNullable<typeof network> =>
-          Boolean(network) &&
-          network.family === "IPv4" &&
-          !network.internal &&
-          !network.address.startsWith("169.254.")
-      )
-      .map((network) => network.address),
+    ...Object.values(networkInterfaces()).flatMap((networks) =>
+      (networks ?? [])
+        .filter(
+          (network) =>
+            network.family === "IPv4" &&
+            !network.internal &&
+            !network.address.startsWith("169.254.")
+        )
+        .map((network) => network.address)
+    ),
   ])
 );
 
