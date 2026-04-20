@@ -1,4 +1,28 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoPlaying, setVideoPlaying] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Ensure muted (required for mobile autoplay policy)
+    video.muted = true;
+
+    const onPlaying = () => setVideoPlaying(true);
+    video.addEventListener("playing", onPlaying);
+
+    // Attempt autoplay — if blocked, the poster-image div covers the
+    // native play-button chrome so no ugly control is ever visible.
+    video.play().catch(() => {});
+
+    return () => video.removeEventListener("playing", onPlaying);
+  }, []);
+
   return (
     <section
       id="hero"
@@ -6,13 +30,27 @@ export default function Hero() {
     >
       {/* Video background */}
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        ref={videoRef}
+        className="hero-bg absolute inset-0 h-full w-full object-cover pointer-events-none select-none"
         src="/videos/hero.mp4"
         autoPlay
         muted
         loop
         playsInline
+        controls={false}
+        preload="auto"
         poster="/images/projects/project-2-after.jpg"
+        aria-hidden="true"
+        tabIndex={-1}
+        disablePictureInPicture
+        disableRemotePlayback
+        style={{ WebkitMediaPlaybackRequiresUserAction: false } as React.CSSProperties}
+      />
+
+      {/* Poster fallback — covers native play-button chrome if autoplay is blocked */}
+      <div
+        className={`absolute inset-0 bg-cover bg-center pointer-events-none transition-opacity duration-700 ${videoPlaying ? "opacity-0" : "opacity-100"}`}
+        style={{ backgroundImage: "url('/images/projects/project-2-after.jpg')" }}
         aria-hidden="true"
       />
 

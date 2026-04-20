@@ -18,14 +18,14 @@ const trustItems = [
 
 export default function TrustBar() {
   return (
-    <div className="bg-brand-dark text-white py-5 px-4">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+    <div className="bg-brand-dark text-white py-2 px-2 sm:py-5 sm:px-4">
+      <div className="max-w-5xl mx-auto grid grid-cols-3 gap-1 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-12">
         {trustItems.map((item) => (
-          <div key={item.label} className="flex items-center gap-3">
-            <div className="text-brand-green-light shrink-0">{item.icon}</div>
+          <div key={item.label} className="flex flex-col items-center text-center gap-0.5 sm:flex-row sm:text-left sm:gap-3">
+            <div className="text-brand-green-light shrink-0 [&_svg]:w-4 [&_svg]:h-4 sm:[&_svg]:w-6 sm:[&_svg]:h-6">{item.icon}</div>
             <div>
-              <p className="font-heading font-bold text-sm leading-tight">{item.label}</p>
-              <p className="text-white/60 text-xs">{item.sub}</p>
+              <p className="font-heading font-bold text-[0.6rem] leading-tight sm:text-sm">{item.label}</p>
+              <p className="text-white/60 text-[0.55rem] leading-snug hidden sm:block sm:text-xs">{item.sub}</p>
             </div>
           </div>
         ))}

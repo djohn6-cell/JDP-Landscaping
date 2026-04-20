@@ -24,6 +24,36 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-montserrat), system-ui, sans-serif;
 }
 
+/* Hide native video controls on hero background video */
+video.hero-bg::-webkit-media-controls,
+video.hero-bg::-webkit-media-controls-enclosure,
+video.hero-bg::-webkit-media-controls-panel,
+video.hero-bg::-webkit-media-controls-start-playback-button,
+video.hero-bg::-webkit-media-controls-overlay-play-button,
+video.hero-bg::-webkit-media-controls-play-button,
+video.hero-bg::-webkit-media-controls-volume-slider,
+video.hero-bg::-webkit-media-controls-timeline,
+video.hero-bg::-webkit-media-controls-current-time-display,
+video.hero-bg::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+video.hero-bg::-moz-media-controls {
+  display: none !important;
+}
+
+video.hero-bg {
+  -webkit-appearance: none;
+  object-fit: cover;
+}
+
 /* Sidebar vertical text */
 .vertical-brand {
   writing-mode: vertical-rl;
