@@ -10,17 +10,40 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Ensure muted (required for mobile autoplay policy)
+    // Pick the right source for the device
+    const isMobile = window.innerWidth < 640;
+    video.src = isMobile ? "/videos/hero-mobile.mp4" : "/videos/hero.mp4";
     video.muted = true;
+    video.load();
 
-    const onPlaying = () => setVideoPlaying(true);
-    video.addEventListener("playing", onPlaying);
+    const onReady = () => setVideoPlaying(true);
+    // Fade out poster as soon as video has data to show (don't wait for full play)
+    video.addEventListener("canplay", onReady);
 
-    // Attempt autoplay — if blocked, the poster-image div covers the
-    // native play-button chrome so no ugly control is ever visible.
+    // Try autoplay immediately
     video.play().catch(() => {});
 
-    return () => video.removeEventListener("playing", onPlaying);
+    // Retry after the mobile-optimized video has had time to buffer
+    const retry = setTimeout(() => {
+      if (!video.paused) return;
+      video.play().catch(() => {});
+    }, 1000);
+
+    // On mobile, some browsers need a user gesture first
+    const onInteraction = () => {
+      if (video.paused) video.play().catch(() => {});
+    };
+    document.addEventListener("touchstart", onInteraction, { once: true, passive: true });
+    document.addEventListener("scroll", onInteraction, { once: true, passive: true });
+    document.addEventListener("click", onInteraction, { once: true });
+
+    return () => {
+      clearTimeout(retry);
+      video.removeEventListener("canplay", onReady);
+      document.removeEventListener("touchstart", onInteraction);
+      document.removeEventListener("scroll", onInteraction);
+      document.removeEventListener("click", onInteraction);
+    };
   }, []);
 
   return (
@@ -32,25 +55,22 @@ export default function Hero() {
       <video
         ref={videoRef}
         className="hero-bg absolute inset-0 h-full w-full object-cover pointer-events-none select-none"
-        src="/videos/hero.mp4"
         autoPlay
         muted
         loop
         playsInline
         controls={false}
         preload="auto"
-        poster="/images/projects/project-2-after.jpg"
         aria-hidden="true"
         tabIndex={-1}
         disablePictureInPicture
         disableRemotePlayback
-        style={{ WebkitMediaPlaybackRequiresUserAction: false } as React.CSSProperties}
       />
 
       {/* Poster fallback — covers native play-button chrome if autoplay is blocked */}
       <div
-        className={`absolute inset-0 bg-cover bg-center pointer-events-none transition-opacity duration-700 ${videoPlaying ? "opacity-0" : "opacity-100"}`}
-        style={{ backgroundImage: "url('/images/projects/project-2-after.jpg')" }}
+        className={`absolute inset-0 bg-cover bg-center pointer-events-none transition-opacity duration-300 ${videoPlaying ? "opacity-0" : "opacity-100"}`}
+        style={{ backgroundImage: "url('/images/hero-poster.jpg')" }}
         aria-hidden="true"
       />
 
@@ -156,7 +176,7 @@ export default function Hero() {
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
             </svg>
             <span className="text-xs font-semibold text-white">
-              74 Recommendations on Nextdoor
+              80+ Favorites on Nextdoor
             </span>
           </a>
         </div>

@@ -202,7 +202,7 @@ export default function QuoteForm({ standalone = false }: { standalone?: boolean
             onChange={handleChange}
             className={`${inputClass} bg-white`}
           >
-            <option value="">Description</option>
+            <option value="" disabled>Select a service</option>
             {serviceOptions.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
