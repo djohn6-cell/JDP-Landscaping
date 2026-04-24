@@ -1,21 +1,28 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Montserrat, Inter } from "next/font/google";
+import { DM_Sans, Playfair_Display, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import StickyNav from "@/components/StickyNav";
 import StickyCTAs from "@/components/StickyCTAs";
 import Footer from "@/components/Footer";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800", "900"],
+  weight: ["700", "800", "900"],
+  style: ["normal", "italic"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 const siteUrl = (() => {
@@ -96,7 +103,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${inter.variable} scroll-smooth`}
+      className={`${playfair.variable} ${dmSans.variable} ${spaceGrotesk.variable} scroll-smooth`}
     >
       <body className="antialiased">
         <script

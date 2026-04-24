@@ -78,23 +78,23 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/65" aria-hidden="true" />
 
       {/* Hero content */}
-      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
-        <p className="mx-auto mb-4 max-w-[21rem] text-[0.68rem] font-bold uppercase leading-tight tracking-[0.2em] text-brand-green-light sm:mb-5 sm:max-w-none sm:text-sm">
+      <div className="relative z-10 mx-auto w-full max-w-4xl px-4 text-center sm:px-6">
+        <p className="mx-auto mb-4 max-w-[19rem] text-[0.64rem] font-bold uppercase leading-tight tracking-[0.18em] text-brand-green-light sm:mb-5 sm:max-w-none sm:text-sm">
           Waxhaw&nbsp;&bull;&nbsp;Marvin&nbsp;&bull;&nbsp;Weddington&nbsp;&bull;&nbsp;Indian
           Land&nbsp;&bull;&nbsp;Surrounding Areas
         </p>
 
-        <h1 className="mx-auto mb-3 font-heading font-black leading-[0.95] text-white sm:max-w-none sm:leading-tight">
-          <span className="block text-[clamp(2.25rem,10vw,3rem)] sm:hidden">
+        <h1 className="mx-auto mb-3 font-heading font-black leading-[0.9] tracking-[-0.03em] text-white sm:max-w-none sm:leading-[0.92]">
+          <span className="mx-auto block max-w-[8.7ch] text-[clamp(2.25rem,11vw,3.2rem)] leading-[0.92] sm:hidden">
             <span className="block whitespace-nowrap">Landscaping</span>
             <span className="block whitespace-nowrap">Done Right</span>
           </span>
-          <span className="hidden text-3xl sm:block sm:text-5xl md:text-6xl lg:text-7xl">
+          <span className="hidden sm:block sm:text-[4.45rem] md:text-[5.4rem] lg:text-[6.35rem]">
             Landscaping Done Right
           </span>
-          <span className="mt-1.5 block text-lg font-bold tracking-wide text-brand-green-light sm:mt-2 sm:text-2xl md:text-3xl">
-            <span className="inline-grid grid-cols-[auto_1.12em_auto] items-center justify-center gap-x-[0.18em] whitespace-nowrap">
-              <span className="italic">Integrity</span>
+          <span className="mt-2.5 block text-[0.95rem] leading-none font-[family-name:var(--font-dm-sans)] font-bold italic tracking-[0.01em] text-brand-green-light sm:mt-4 sm:text-[1.8rem] md:text-[2.15rem]">
+            <span className="inline-grid grid-cols-[auto_1.12em_auto] items-center justify-center gap-x-[0.2em] whitespace-nowrap">
+              <span>Integrity</span>
               <span className="inline-flex h-[0.84em] w-[1.12em] items-center justify-center not-italic">
                 <svg
                   aria-hidden="true"
@@ -111,12 +111,12 @@ export default function Hero() {
                   />
                 </svg>
               </span>
-              <span className="italic">Profit</span>
+              <span>Profit</span>
             </span>
           </span>
         </h1>
 
-        <p className="mx-auto mb-7 max-w-[27rem] text-sm leading-relaxed text-white/75 sm:mb-10 sm:max-w-2xl sm:text-lg md:text-xl">
+        <p className="mx-auto mb-7 max-w-[19.5rem] text-[0.95rem] leading-relaxed text-white/75 sm:mb-10 sm:max-w-2xl sm:text-lg md:text-xl">
           We maintain an amazing local reputation built on honesty, punctuality, and results that speak for themselves.
         </p>
 
