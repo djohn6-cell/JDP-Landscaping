@@ -28,7 +28,11 @@ const services: {
   {
     name: "Mulching",
     icon: <MulchIcon />,
-    img: "/images/projects/project-5.jpg",
+    beforeAfter: {
+      before: "/images/projects/ba1-before.jpg",
+      after: "/images/projects/ba1-after.jpg",
+    },
+    img: "/images/projects/project-1.jpg",
     imgAlt: "Mulch bed installation — JDP Landscaping Charlotte NC",
   },
   {

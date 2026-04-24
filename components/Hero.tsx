@@ -84,7 +84,10 @@ export default function Hero() {
           Land&nbsp;&bull;&nbsp;Surrounding Areas
         </p>
 
-        <h1 className="mx-auto mb-3 font-heading font-black leading-[0.9] tracking-[-0.03em] text-white sm:max-w-none sm:leading-[0.92]">
+        <h1
+          className="mx-auto mb-3 font-black leading-[0.9] tracking-[-0.03em] text-white sm:max-w-none sm:leading-[0.92]"
+          style={{ fontFamily: "var(--font-montserrat), system-ui, sans-serif" }}
+        >
           <span className="mx-auto block max-w-[8.7ch] text-[clamp(2.25rem,11vw,3.2rem)] leading-[0.92] sm:hidden">
             <span className="block whitespace-nowrap">Landscaping</span>
             <span className="block whitespace-nowrap">Done Right</span>
@@ -195,7 +198,7 @@ export default function Hero() {
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
             </svg>
             <span className="text-xs font-semibold text-white">
-              80+ Favorites on Nextdoor
+              90+ Favorites on Nextdoor
             </span>
           </a>
         </div>

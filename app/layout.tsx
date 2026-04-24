@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { DM_Sans, Playfair_Display, Space_Grotesk } from "next/font/google";
+import { DM_Sans, Montserrat, Playfair_Display, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import StickyNav from "@/components/StickyNav";
 import StickyCTAs from "@/components/StickyCTAs";
@@ -11,6 +11,12 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["700", "800", "900"],
   style: ["normal", "italic"],
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
 });
 
 const dmSans = DM_Sans({
@@ -103,7 +109,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSans.variable} ${spaceGrotesk.variable} scroll-smooth`}
+      className={`${playfair.variable} ${montserrat.variable} ${dmSans.variable} ${spaceGrotesk.variable} scroll-smooth`}
     >
       <body className="antialiased">
         <script

@@ -139,15 +139,15 @@ export default function SocialProof() {
           {/* Right — stats + trophies */}
           <div className="flex flex-col items-start gap-3 lg:items-end">
             {/* Stats row */}
-            <div className="flex flex-wrap items-end gap-5 lg:gap-0">
+            <div className="flex items-end gap-0">
               {/* Google rating */}
-              <div className="pr-5 lg:border-r lg:border-gray-200 lg:pr-6">
-                <p className="text-3xl font-black text-gray-900">5.0</p>
+              <div className="pr-4 sm:pr-5 lg:border-r lg:border-gray-200 lg:pr-6">
+                <p className="text-2xl font-black text-gray-900 sm:text-3xl">5.0</p>
                 <div className="mt-0.5 flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <svg
                       key={i}
-                      className="h-3.5 w-3.5 text-yellow-400"
+                      className="h-3 w-3 text-yellow-400 sm:h-3.5 sm:w-3.5"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -156,13 +156,13 @@ export default function SocialProof() {
                     </svg>
                   ))}
                 </div>
-                <p className="mt-1 text-xs text-gray-400">on Google</p>
+                <p className="mt-1 text-[10px] text-gray-400 sm:text-xs">on Google</p>
               </div>
 
               {/* Nextdoor favorites */}
-              <div className="px-5 lg:border-r lg:border-gray-200 lg:px-6">
-                <p className="text-3xl font-black text-gray-900">91</p>
-                <p className="mt-1 text-xs leading-tight text-gray-400">
+              <div className="border-l border-gray-200 px-4 sm:px-5 lg:border-r lg:px-6">
+                <p className="text-2xl font-black text-gray-900 sm:text-3xl">91</p>
+                <p className="mt-1 text-[10px] leading-tight text-gray-400 sm:text-xs">
                   Favorites
                   <br />
                   on Nextdoor
@@ -170,11 +170,11 @@ export default function SocialProof() {
               </div>
 
               {/* Neighborhood Fave count */}
-              <div className="px-5 lg:px-6">
-                <p className="text-3xl font-black text-gray-900">
-                  4<span className="text-xl">&times;</span>
+              <div className="border-l border-gray-200 pl-4 sm:pl-5 lg:px-6">
+                <p className="text-2xl font-black text-gray-900 sm:text-3xl">
+                  4<span className="text-lg sm:text-xl">&times;</span>
                 </p>
-                <p className="mt-1 text-xs leading-tight text-gray-400">
+                <p className="mt-1 text-[10px] leading-tight text-gray-400 sm:text-xs">
                   Neighborhood
                   <br />
                   Fave

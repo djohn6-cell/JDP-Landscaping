@@ -252,6 +252,11 @@ export default function QuoteForm({ standalone = false }: { standalone?: boolean
               </label>
             ))}
           </div>
+          <p className="mt-2 text-xs leading-relaxed text-brand-charcoal/60">
+            Selecting &quot;Text Message&quot; here only tells us how you would prefer to be
+            contacted. It does not enroll you in SMS messages. SMS consent is only
+            given if you check the separate checkbox below.
+          </p>
         </div>
 
         {/* Honeypot — invisible to real users, catches bots */}
@@ -278,11 +283,12 @@ export default function QuoteForm({ standalone = false }: { standalone?: boolean
               className="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-brand-green focus:ring-brand-green/40 cursor-pointer"
             />
             <span className="text-xs text-brand-charcoal/75 leading-relaxed">
-              By checking this box, you agree to receive SMS messages from JDP Landscaping
-              about your quote request, scheduling, appointments, and service updates.
-              Message frequency varies. Message and data rates may apply. Reply{" "}
-              <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help.
-              Consent is not a condition of purchase.
+              By checking this box, you agree to receive optional SMS messages from
+              JDP Landscaping related to your quote request, scheduling,
+              appointment confirmations, appointment reminders, and service
+              updates. Message frequency varies. Message and data rates may apply.
+              Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong>{" "}
+              for help. Consent is not a condition of purchase or service.
             </span>
           </label>
           <p className="text-xs text-brand-charcoal/50 pl-7">

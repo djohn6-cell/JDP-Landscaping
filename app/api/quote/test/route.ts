@@ -1,79 +1,56 @@
-import twilio from "twilio";
+import { getMissingEmailEnvVars, sendQuoteEmail } from "@/lib/email";
 
 /**
  * GET /api/quote/test
  *
- * Sends a single hardcoded test SMS to OWNER_PHONE_NUMBER via Twilio.
- * Disabled unless TEST_SMS_ENABLED=true in your .env.local.
- * Blocked entirely in production (returns 404).
- *
- * Trigger with:
- *   curl http://localhost:3000/api/quote/test
- *   — or just open that URL in your browser.
+ * Sends one development-only test email to OWNER_EMAIL.
+ * Disabled unless TEST_EMAIL_ENABLED=true in .env.local.
+ * Blocked entirely in production.
  */
 export async function GET() {
-  // Hard block in production — returns 404 with no detail (C1 fix)
   if (process.env.NODE_ENV === "production") {
     return Response.json({ error: "Not found." }, { status: 404 });
   }
 
-  // Guard: must explicitly opt in during development
-  if (process.env.TEST_SMS_ENABLED !== "true") {
+  if (process.env.TEST_EMAIL_ENABLED !== "true") {
     return Response.json(
-      { error: "Test mode is disabled." },
+      { error: "Test mode is disabled. Set TEST_EMAIL_ENABLED=true locally." },
       { status: 403 }
     );
   }
 
-  const sid = process.env.TWILIO_ACCOUNT_SID;
-  const token = process.env.TWILIO_AUTH_TOKEN;
-  const from = process.env.TWILIO_PHONE_NUMBER;
-  const to = process.env.OWNER_PHONE_NUMBER;
+  const missingEmailEnvVars = getMissingEmailEnvVars();
 
-  // Log which vars are present — server-side only, never in response body (C1 fix)
-  console.log("[twilio-test] Env check:", {
-    TWILIO_ACCOUNT_SID: sid ? `${sid.slice(0, 6)}…` : "MISSING",
-    TWILIO_AUTH_TOKEN: token ? "set" : "MISSING",
-    TWILIO_PHONE_NUMBER: from ? "set" : "MISSING",
-    OWNER_PHONE_NUMBER: to ? "set" : "MISSING",
-  });
-
-  if (!sid || !token || !from || !to) {
-    // Do not list which vars are missing in the response body (C1 fix)
+  if (missingEmailEnvVars.length > 0) {
+    console.error("[quote-email-test] Missing email environment variables:", missingEmailEnvVars);
     return Response.json(
-      { error: "SMS configuration incomplete. Check server logs." },
+      { error: "Email configuration incomplete. Check server logs." },
       { status: 500 }
     );
   }
 
-  const client = twilio(sid, token);
-
   try {
-    const msg = await client.messages.create({
-      body: "✅ JDP Landscaping — Twilio test SMS. If you got this, the integration works.",
-      from,
-      to,
+    const result = await sendQuoteEmail({
+      fullName: "Test Quote Request",
+      phone: "(704) 989-6027",
+      email: "test@example.com",
+      address: "Local test submission",
+      service: "Mulching",
+      message: "This is a local test email from /api/quote/test.",
+      preferredContact: "email",
+      smsConsent: false,
+      submittedAt: new Date(),
     });
 
-    console.log("[twilio-test] SMS sent successfully:", {
-      sid: msg.sid,
-      status: msg.status,
+    console.log("[quote-email-test] Email sent successfully:", {
+      messageId: result.messageId,
     });
 
-    return Response.json({
-      success: true,
-      messageSid: msg.sid,
-      status: msg.status,
-    });
+    return Response.json({ success: true, messageId: result.messageId });
   } catch (err: unknown) {
-    const error = err as { message?: string; code?: number };
-    // Log details server-side only — never expose raw SDK errors in response body (C1 fix)
-    console.error("[twilio-test] Twilio error:", {
-      message: error.message,
-      code: error.code,
-    });
+    console.error("[quote-email-test] Email delivery failed:", err);
     return Response.json(
-      { success: false, error: "SMS delivery failed." },
+      { success: false, error: "Email delivery failed." },
       { status: 500 }
     );
   }
