@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import StickyNav from "@/components/StickyNav";
@@ -114,6 +115,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

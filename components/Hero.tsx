@@ -1,14 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-
-const quickLinks = [
-  { label: "Home", href: "/#hero" },
-  { label: "About", href: "/about" },
-  { label: "Our Work", href: "/our-work" },
-  { label: "Contact", href: "/quote" },
-];
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -87,29 +79,6 @@ export default function Hero() {
 
       {/* Hero content */}
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
-        {/* Mobile quick links — visually connected to hero instead of floating in nav */}
-        <nav className="mb-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:hidden">
-          {quickLinks.map((link) =>
-            link.href.startsWith("/#") ? (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors hover:text-white"
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors hover:text-white"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
-        </nav>
-
         <p className="mx-auto mb-4 max-w-[21rem] text-[0.68rem] font-bold uppercase leading-tight tracking-[0.2em] text-brand-green-light sm:mb-5 sm:max-w-none sm:text-sm">
           Waxhaw&nbsp;&bull;&nbsp;Marvin&nbsp;&bull;&nbsp;Weddington&nbsp;&bull;&nbsp;Indian
           Land&nbsp;&bull;&nbsp;Surrounding Areas

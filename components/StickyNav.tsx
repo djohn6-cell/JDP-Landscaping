@@ -46,27 +46,22 @@ export default function StickyNav() {
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) =>
-              link.href.startsWith("/#") ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-white/80 hover:text-white text-base font-medium tracking-wide transition-colors drop-shadow-sm"
-                >
+          {/* Nav links — always visible; compact on mobile, spacious on desktop */}
+          <nav className="flex items-center gap-2 sm:gap-4 md:gap-8">
+            {navLinks.map((link) => {
+              const cls =
+                "text-[0.6rem] font-semibold uppercase tracking-[0.08em] text-white/80 hover:text-white transition-colors whitespace-nowrap drop-shadow-sm " +
+                "sm:text-xs sm:tracking-[0.12em] md:text-base md:font-medium md:tracking-wide md:normal-case";
+              return link.href.startsWith("/#") ? (
+                <a key={link.href} href={link.href} className={cls}>
                   {link.label}
                 </a>
               ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-white/80 hover:text-white text-base font-medium tracking-wide transition-colors drop-shadow-sm"
-                >
+                <Link key={link.href} href={link.href} className={cls}>
                   {link.label}
                 </Link>
-              )
-            )}
+              );
+            })}
           </nav>
 
           {/* Phone + hamburger */}
@@ -94,7 +89,6 @@ export default function StickyNav() {
           </div>
         </div>
 
-        {/* Quick links row moved into Hero on mobile — see Hero.tsx */}
       </div>
 
       {/* Mobile menu */}
