@@ -1,6 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+
+const quickLinks = [
+  { label: "Home", href: "/#hero" },
+  { label: "About", href: "/about" },
+  { label: "Our Work", href: "/our-work" },
+  { label: "Contact", href: "/quote" },
+];
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -79,6 +87,29 @@ export default function Hero() {
 
       {/* Hero content */}
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
+        {/* Mobile quick links — visually connected to hero instead of floating in nav */}
+        <nav className="mb-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:hidden">
+          {quickLinks.map((link) =>
+            link.href.startsWith("/#") ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors hover:text-white"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors hover:text-white"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
+        </nav>
+
         <p className="mx-auto mb-4 max-w-[21rem] text-[0.68rem] font-bold uppercase leading-tight tracking-[0.2em] text-brand-green-light sm:mb-5 sm:max-w-none sm:text-sm">
           Waxhaw&nbsp;&bull;&nbsp;Marvin&nbsp;&bull;&nbsp;Weddington&nbsp;&bull;&nbsp;Indian
           Land&nbsp;&bull;&nbsp;Surrounding Areas
@@ -92,13 +123,32 @@ export default function Hero() {
           <span className="hidden text-3xl sm:block sm:text-5xl md:text-6xl lg:text-7xl">
             Landscaping Done Right
           </span>
-          <span className="mt-1.5 block text-lg font-bold italic tracking-wide text-brand-green-light sm:mt-2 sm:text-2xl md:text-3xl">
-            Integrity Over Profit
+          <span className="mt-1.5 block text-lg font-bold tracking-wide text-brand-green-light sm:mt-2 sm:text-2xl md:text-3xl">
+            <span className="inline-grid grid-cols-[auto_1.12em_auto] items-center justify-center gap-x-[0.18em] whitespace-nowrap">
+              <span className="italic">Integrity</span>
+              <span className="inline-flex h-[0.84em] w-[1.12em] items-center justify-center not-italic">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 20 20"
+                  className="h-[0.66em] w-[0.86em] overflow-visible"
+                  fill="none"
+                >
+                  <path
+                    d="M4 3.5L13 10L4 16.5"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span className="italic">Profit</span>
+            </span>
           </span>
         </h1>
 
         <p className="mx-auto mb-7 max-w-[27rem] text-sm leading-relaxed text-white/75 sm:mb-10 sm:max-w-2xl sm:text-lg md:text-xl">
-          Built on honesty, punctuality, and results that speak for themselves.
+          We maintain an amazing local reputation built on honesty, punctuality, and results that speak for themselves.
         </p>
 
         {/* CTA cluster: primary focal point */}
