@@ -29,7 +29,21 @@ const requiredEmailEnvVars = [
 ] as const;
 
 export function getMissingEmailEnvVars() {
-  return requiredEmailEnvVars.filter((key) => !process.env[key]?.trim());
+  return requiredEmailEnvVars.filter((key) => !readEnv(key));
+}
+
+function readEnv(key: (typeof requiredEmailEnvVars)[number]) {
+  const value = process.env[key]?.trim();
+  if (!value) return "";
+
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    return value.slice(1, -1).trim();
+  }
+
+  return value;
 }
 
 function escapeHtml(value: string) {
@@ -69,15 +83,15 @@ function buildEmailRows(payload: QuoteEmailPayload) {
 }
 
 export async function sendQuoteEmail(payload: QuoteEmailPayload) {
-  const port = Number(process.env.SMTP_PORT);
+  const port = Number(readEnv("SMTP_PORT"));
 
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
+    host: readEnv("SMTP_HOST"),
     port,
     secure: port === 465,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: readEnv("SMTP_USER"),
+      pass: readEnv("SMTP_PASS"),
     },
   });
 
@@ -108,8 +122,8 @@ export async function sendQuoteEmail(payload: QuoteEmailPayload) {
   `;
 
   return transporter.sendMail({
-    from: process.env.SMTP_FROM,
-    to: process.env.OWNER_EMAIL,
+    from: readEnv("SMTP_FROM"),
+    to: readEnv("OWNER_EMAIL"),
     subject: "New Quote Request - JDP Landscaping",
     text,
     html,
