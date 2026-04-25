@@ -147,7 +147,20 @@ export async function POST(request: NextRequest) {
 
     return Response.json({ success: true });
   } catch (err: unknown) {
-    console.error("[quote] Owner email notification failed:", err);
+    const error = err as {
+      code?: string;
+      command?: string;
+      response?: string;
+      responseCode?: number;
+      message?: string;
+    };
+    console.error("[quote] Owner email notification failed:", {
+      code: error.code,
+      command: error.command,
+      response: error.response,
+      responseCode: error.responseCode,
+      message: error.message,
+    });
     return Response.json(
       {
         error:
