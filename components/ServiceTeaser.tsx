@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const services: {
   name: string;
@@ -21,8 +20,8 @@ const services: {
     img: null,
     imgAlt: "Shrub and hedge trimming — JDP Landscaping Charlotte NC",
     beforeAfter: {
-      before: "/images/services/trimming-before.jpg",
-      after: "/images/services/trimming-after.jpg",
+      before: "/images/services/trim-before-v2.jpg",
+      after: "/images/services/trim-after-v2.jpg",
     },
   },
   {
@@ -169,23 +168,6 @@ export default function ServiceTeaser() {
             </div>
           </div>
         </div>
-
-        <div className="flex items-center justify-center gap-4 sm:flex-row">
-          <Link
-            href="/our-work"
-            className="inline-flex items-center gap-2 rounded-full bg-brand-green px-8 py-4 text-base font-bold text-white shadow-lg transition-colors hover:bg-brand-green-mid"
-          >
-            See Our Work
-            <ArrowIcon />
-          </Link>
-          <a
-            href="tel:+17049896027"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-brand-green px-8 py-4 text-base font-bold text-brand-green transition-colors hover:bg-brand-green hover:text-white"
-          >
-            <PhoneIcon />
-            Call (704) 989-6027
-          </a>
-        </div>
       </div>
     </section>
   );
@@ -256,19 +238,6 @@ function CleanupIcon() {
   );
 }
 
-function PhoneIcon() {
-  return (
-    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-      />
-    </svg>
-  );
-}
-
 function PlusIcon() {
   return (
     <svg
@@ -296,19 +265,6 @@ function PlusIconSmall() {
         strokeLinejoin="round"
         strokeWidth={2}
         d="M12 4v16m8-8H4"
-      />
-    </svg>
-  );
-}
-
-function ArrowIcon() {
-  return (
-    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M17 8l4 4m0 0l-4 4m4-4H3"
       />
     </svg>
   );

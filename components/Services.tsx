@@ -33,8 +33,8 @@ const services = [
     description: "Precise cuts that keep your hedges, shrubs, and trees looking sharp and well-maintained.",
     icon: <TrimIcon />,
     images: [
-      { src: "/images/services/trimming-before.jpg", label: "Before" },
-      { src: "/images/services/trimming-after.jpg", label: "After" },
+      { src: "/images/services/trim-before-v2.jpg", label: "Before" },
+      { src: "/images/services/trim-after-v2.jpg", label: "After" },
     ],
   },
   {

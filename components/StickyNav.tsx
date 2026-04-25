@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "Home", href: "/#hero" },
@@ -14,6 +15,13 @@ const navLinks = [
 export default function StickyNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const lightHeader = pathname === "/thank-you";
+  const headerSurface = lightHeader
+    ? "bg-brand-cream/95 backdrop-blur-sm border-b border-brand-dark/10 shadow-sm"
+    : scrolled
+      ? "bg-brand-dark/95 backdrop-blur-sm border-b border-white/5 shadow-lg"
+      : "bg-transparent border-b border-transparent";
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 80);
@@ -24,11 +32,7 @@ export default function StickyNav() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-brand-dark/95 backdrop-blur-sm border-b border-white/5 shadow-lg"
-          : "bg-transparent border-b border-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerSurface}`}
     >
       <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 lg:px-16">
         <div className="flex h-20 items-center justify-between sm:h-28">
@@ -41,7 +45,11 @@ export default function StickyNav() {
               height={72}
               className="h-11 w-11 rounded object-contain sm:h-[72px] sm:w-[72px]"
             />
-            <span className="text-white font-heading font-bold text-xl tracking-wide hidden sm:block drop-shadow-sm">
+            <span
+              className={`font-heading font-bold text-xl tracking-wide hidden sm:block ${
+                lightHeader ? "text-brand-dark" : "text-white drop-shadow-sm"
+              }`}
+            >
               JDP LANDSCAPING
             </span>
           </Link>
@@ -50,7 +58,11 @@ export default function StickyNav() {
           <nav className="flex items-center gap-2 sm:gap-4 md:gap-8">
             {navLinks.map((link) => {
               const cls =
-                "text-[0.6rem] font-semibold uppercase tracking-[0.08em] text-white/80 hover:text-white transition-colors whitespace-nowrap drop-shadow-sm " +
+                `text-[0.6rem] font-semibold uppercase tracking-[0.08em] transition-colors whitespace-nowrap ${
+                  lightHeader
+                    ? "text-brand-dark/70 hover:text-brand-dark"
+                    : "text-white/80 hover:text-white drop-shadow-sm"
+                } ` +
                 "sm:text-xs sm:tracking-[0.12em] md:text-base md:font-medium md:tracking-wide md:normal-case";
               return link.href.startsWith("/#") ? (
                 <a key={link.href} href={link.href} className={cls}>
@@ -68,7 +80,11 @@ export default function StickyNav() {
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="tel:+17049896027"
-              className="hidden sm:flex items-center gap-2 border border-white/30 hover:border-white/60 text-white text-base font-semibold px-5 py-2.5 rounded-full transition-colors"
+              className={`hidden sm:flex items-center gap-2 border text-base font-semibold px-5 py-2.5 rounded-full transition-colors ${
+                lightHeader
+                  ? "border-brand-dark/15 hover:border-brand-green/60 text-brand-dark bg-white/60"
+                  : "border-white/30 hover:border-white/60 text-white"
+              }`}
             >
               <PhoneIcon />
               (704) 989-6027
@@ -80,7 +96,7 @@ export default function StickyNav() {
               Request a Quote
             </a>
             <button
-              className="p-2 text-white drop-shadow-sm md:hidden"
+              className={`p-2 md:hidden ${lightHeader ? "text-brand-dark" : "text-white drop-shadow-sm"}`}
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
             >
@@ -93,14 +109,20 @@ export default function StickyNav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-brand-dark border-t border-white/10">
+        <div
+          className={`md:hidden border-t ${
+            lightHeader ? "bg-brand-cream border-brand-dark/10" : "bg-brand-dark border-white/10"
+          }`}
+        >
           <nav className="flex flex-col px-4 py-4 gap-4">
             {navLinks.map((link) =>
               link.href.startsWith("/#") ? (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-white/80 hover:text-white text-base font-medium py-1 transition-colors"
+                  className={`text-base font-medium py-1 transition-colors ${
+                    lightHeader ? "text-brand-dark/70 hover:text-brand-dark" : "text-white/80 hover:text-white"
+                  }`}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
@@ -109,7 +131,9 @@ export default function StickyNav() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-white/80 hover:text-white text-base font-medium py-1 transition-colors"
+                  className={`text-base font-medium py-1 transition-colors ${
+                    lightHeader ? "text-brand-dark/70 hover:text-brand-dark" : "text-white/80 hover:text-white"
+                  }`}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
