@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 
 const pairs = [
   {
-    before: "/images/projects/project-2-before.jpg",
-    after: "/images/projects/project-2-after.jpg",
+    before: "/images/projects/property-transform-before.png",
+    after: "/images/projects/property-transform-after.png",
     label: "Property Transformation",
   },
   {
@@ -38,10 +38,10 @@ const pairs = [
 ];
 
 const singles = [
-  { src: "/images/projects/project-1.jpg", label: "Mulch bed installation and edging" },
-  { src: "/images/projects/project-4.jpg", label: "Backyard patio area landscaping" },
+  { src: "/images/projects/our-work-shrub-trimming.png", label: "Shrub trimming and shaping" },
+  { src: "/images/projects/our-work-driveway-crew.png", label: "Mulch bed installation and edging" },
   { src: "/images/projects/project-5.jpg", label: "Mulch island and landscape bed" },
-  { src: "/images/projects/project-7.jpg", label: "Lawn cleanup and yard care" },
+  { src: "/images/projects/project-7.jpg", label: "Bulk mulch delivery and spreading" },
 ];
 
 const serviceSchema = {

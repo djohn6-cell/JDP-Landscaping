@@ -154,6 +154,21 @@ export default function Footer() {
             ))}
           </div>
         </div>
+
+        {/* Website credit */}
+        <div className="border-t border-white/10 mt-6 pt-4 pb-2 text-center text-[11px] text-white/40">
+          <p>
+            Website built by Daniel John{" "}
+            <span className="mx-1">•</span>{" "}
+            Need a website for your business?{" "}
+            <a
+              href="tel:+17047719141"
+              className="hover:text-white/70 transition-colors"
+            >
+              Call or text (704) 771-9141
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
