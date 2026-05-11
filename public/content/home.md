@@ -24,7 +24,7 @@ JDP Landscaping handles everything your outdoor property needs — from routine 
 ## Contact
 
 - Phone/Text: (704) 989-6027
-- Email: jdpone@gmail.com
+- Email: Jdp@jdplandscaping.com
 - Request a quote online: https://jdplandscaping.com/quote
 
 ## Service Area

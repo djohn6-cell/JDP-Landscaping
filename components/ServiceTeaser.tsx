@@ -140,11 +140,8 @@ export default function ServiceTeaser() {
                   <div className="scale-150 text-brand-green-light/40">{service.icon}</div>
                 </div>
               )}
-              <div className="flex items-center gap-2.5 px-4 py-3">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-green/10 text-brand-green transition-colors group-hover:bg-brand-green/20">
-                  {service.icon}
-                </div>
-                <p className="font-heading text-sm font-bold text-brand-dark">{service.name}</p>
+              <div className="px-4 py-3 text-center">
+                <p className="text-sm font-extrabold text-brand-dark">{service.name}</p>
               </div>
             </div>
           ))}
@@ -160,11 +157,8 @@ export default function ServiceTeaser() {
                 Just ask.
               </p>
             </div>
-            <div className="flex items-center gap-2.5 px-4 py-3">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-green/10 text-brand-green">
-                <PlusIconSmall />
-              </div>
-              <p className="font-heading text-sm font-bold text-brand-dark">And More</p>
+            <div className="px-4 py-3 text-center">
+              <p className="text-sm font-extrabold text-brand-dark">And More</p>
             </div>
           </div>
         </div>

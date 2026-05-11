@@ -31,7 +31,7 @@ Charlotte, Marvin, Waxhaw, Ballantyne, Pineville, Matthews, Indian Trail, Stalli
 ## Contact
 
 - Phone/Text: (704) 989-6027
-- Email: jdpone@gmail.com
+- Email: Jdp@jdplandscaping.com
 - Quote form: https://jdplandscaping.com/quote
 
 ## Trust

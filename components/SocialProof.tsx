@@ -349,6 +349,16 @@ function ReviewCard({ review }: { review: Review }) {
         <span className="flex items-center gap-1.5 text-xs text-gray-400">
           <ShareIcon />
         </span>
+        {review.platform === "nextdoor" && (
+          <a
+            href="https://nextdoor.com/page/jdp-landscaping-waxhaw-nc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto text-xs font-semibold text-[#00B246] hover:underline"
+          >
+            View on Nextdoor
+          </a>
+        )}
       </div>
     </div>
   );

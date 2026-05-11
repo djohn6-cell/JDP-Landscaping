@@ -67,7 +67,7 @@ const localBusinessSchema = {
   description:
     "Honest, high-quality landscaping in Charlotte, Marvin, Waxhaw, and surrounding areas. Trimming, mulching, removal, planting, and more.",
   telephone: "+17049896027",
-  email: "jdpone@gmail.com",
+  email: "Jdp@jdplandscaping.com",
   url: siteUrl,
   address: {
     "@type": "PostalAddress",

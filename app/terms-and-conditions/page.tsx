@@ -119,10 +119,10 @@ export default function TermsAndConditionsPage() {
                   </a>{" "}
                   or{" "}
                   <a
-                    href="mailto:jdpone@gmail.com"
+                    href="mailto:Jdp@jdplandscaping.com"
                     className="font-medium text-brand-green hover:underline"
                   >
-                    jdpone@gmail.com
+                    Jdp@jdplandscaping.com
                   </a>
                   .
                 </p>
@@ -234,8 +234,8 @@ export default function TermsAndConditionsPage() {
               </li>
               <li>
                 <span className="font-semibold text-brand-dark">Email: </span>
-                <a href="mailto:jdpone@gmail.com" className="text-brand-green hover:underline">
-                  jdpone@gmail.com
+                <a href="mailto:Jdp@jdplandscaping.com" className="text-brand-green hover:underline">
+                  Jdp@jdplandscaping.com
                 </a>
               </li>
               <li>

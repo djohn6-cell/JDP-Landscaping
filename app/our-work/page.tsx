@@ -160,18 +160,11 @@ export default function OurWorkPage() {
                   </div>
                 </div>
                 {/* Card footer */}
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-t border-black/[0.05]">
-                  <div>
-                    <p className="font-heading font-bold text-brand-dark text-sm leading-snug">
+                <div className="px-6 py-4 bg-white border-t border-black/[0.05]">
+                    <p className="font-extrabold text-brand-dark text-sm leading-snug">
                       {pair.label}
                     </p>
                     <p className="text-brand-charcoal/40 text-xs mt-0.5">Charlotte, NC</p>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-brand-green/10 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-                    <svg className="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
                 </div>
               </div>
             ))}

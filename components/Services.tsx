@@ -134,14 +134,9 @@ export default function Services() {
               )}
 
               <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 bg-brand-green/10 group-hover:bg-brand-green/20 rounded-lg flex items-center justify-center text-brand-green shrink-0 transition-colors">
-                    {service.icon}
-                  </div>
-                  <h3 className="font-heading font-bold text-brand-dark text-lg">
-                    {service.name}
-                  </h3>
-                </div>
+                <h3 className="font-extrabold text-brand-dark text-lg mb-3">
+                  {service.name}
+                </h3>
                 <p className="text-brand-charcoal/70 text-sm leading-relaxed">
                   {service.description}
                 </p>
