@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Reveal from "@/components/Reveal";
 
 const services: {
   name: string;
@@ -73,26 +74,26 @@ const services: {
 
 export default function ServiceTeaser() {
   return (
-    <section className="bg-brand-cream py-16 lg:py-20">
+    <section className="bg-cream-deep py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-10 max-w-2xl text-center">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-green">
+        <Reveal className="mx-auto mb-10 max-w-2xl text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-terra">
             What We Do
           </p>
-          <h2 className="mb-4 font-heading text-3xl font-black leading-tight text-brand-dark sm:text-4xl lg:text-5xl">
+          <h2 className="mb-4 font-heading text-3xl font-black leading-tight text-brand-charcoal sm:text-4xl lg:text-5xl">
             Our Services at a Glance
           </h2>
           <p className="text-base text-brand-charcoal/70 sm:text-lg">
             From routine maintenance to full property transformations — and plenty more. If
             you don&apos;t see your job listed, just reach out.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {services.map((service) => (
+          {services.map((service, i) => (
+            <Reveal key={service.name} delay={i * 0.06}>
             <div
-              key={service.name}
-              className="group overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+              className="group lift-card overflow-hidden rounded-2xl"
             >
               {service.beforeAfter ? (
                 <div className="flex aspect-[4/3] overflow-hidden">
@@ -141,14 +142,16 @@ export default function ServiceTeaser() {
                 </div>
               )}
               <div className="px-4 py-3 text-center">
-                <p className="text-sm font-extrabold text-brand-dark">{service.name}</p>
+                <p className="text-sm font-extrabold text-brand-charcoal">{service.name}</p>
               </div>
             </div>
+            </Reveal>
           ))}
 
-          <div className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md">
+          <Reveal delay={services.length * 0.06}>
+          <div className="group lift-card overflow-hidden rounded-2xl">
             <div className="relative flex aspect-[4/3] flex-col items-center justify-center gap-2.5 bg-brand-dark px-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green-light/20">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-terra/20 transition-transform duration-300 group-hover:scale-110">
                 <PlusIcon />
               </div>
               <p className="text-center text-xs leading-snug text-white/65">
@@ -158,9 +161,10 @@ export default function ServiceTeaser() {
               </p>
             </div>
             <div className="px-4 py-3 text-center">
-              <p className="text-sm font-extrabold text-brand-dark">And More</p>
+              <p className="text-sm font-extrabold text-brand-charcoal">And More</p>
             </div>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -235,25 +239,12 @@ function CleanupIcon() {
 function PlusIcon() {
   return (
     <svg
-      className="h-5 w-5 text-brand-green-light"
+      className="h-5 w-5 text-terra"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
       aria-hidden="true"
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 4v16m8-8H4"
-      />
-    </svg>
-  );
-}
-
-function PlusIconSmall() {
-  return (
-    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

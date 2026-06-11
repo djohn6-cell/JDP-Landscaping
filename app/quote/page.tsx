@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import QuoteForm from "@/components/QuoteForm";
+import JobberEmbed from "@/components/JobberEmbed";
 
 export const metadata: Metadata = {
   title: "Request a Free Quote | JDP Landscaping | Charlotte, NC",
@@ -61,8 +61,14 @@ export default function QuotePage() {
         </div>
       </div>
 
-      {/* Form section */}
-      <QuoteForm standalone />
+      {/* Form section — Jobber work request embed (client's CRM) */}
+      <section className="bg-brand-cream pt-12 lg:pt-16">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <div className="rounded-2xl border border-black/5 bg-white p-3 shadow-[0_10px_40px_-12px_rgba(28,25,18,0.15)] sm:p-6">
+            <JobberEmbed />
+          </div>
+        </div>
+      </section>
 
       {/* Reassurance */}
       <section className="bg-brand-cream pb-20 lg:pb-28">

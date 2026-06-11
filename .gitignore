@@ -38,6 +38,7 @@ yarn-error.log*
 
 # unused/intermediate video artifacts
 public/videos/showcase-compressed.mp4
+public/videos/JDP VIDEOS/
 
 # typescript
 *.tsbuildinfo

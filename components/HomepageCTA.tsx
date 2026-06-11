@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 export default function HomepageCTA() {
   return (
@@ -8,35 +9,45 @@ export default function HomepageCTA() {
         className="absolute inset-0 bg-[url('/images/bottom.png')] bg-cover bg-center"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-brand-dark/80" aria-hidden="true" />
+      <div className="absolute inset-0 bg-brand-dark/85" aria-hidden="true" />
+      {/* Ease from the warm cream section above into the dark closing CTA */}
+      <div
+        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-cream to-transparent"
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
-        <p className="text-brand-green-light font-semibold text-sm tracking-widest uppercase mb-4">
-          Get Started
-        </p>
-        <h2 className="font-heading font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
-          Ready to Transform Your Yard?
-        </h2>
-        <p className="text-white/70 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-10">
-          Get a free, no-obligation quote for your property in Marvin, Waxhaw,
-          or the surrounding area. No contracts, no pressure — just honest work.
-        </p>
+        <Reveal>
+          <p className="text-brand-green-light font-semibold text-sm tracking-widest uppercase mb-4">
+            Get Started
+          </p>
+          <h2 className="font-heading font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
+            Ready to Transform Your Yard?
+          </h2>
+          <p className="text-white/70 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-10">
+            Get a free, no-obligation quote for your property in Marvin, Waxhaw,
+            or the surrounding area. No contracts, no pressure — just honest work.
+          </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link
-            href="/quote"
-            className="bg-brand-green hover:bg-brand-green-mid text-white font-bold text-base px-8 py-4 rounded-full shadow-lg transition-colors w-full sm:w-auto text-center"
-          >
-            Request a Free Quote
-          </Link>
-          <a
-            href="tel:+17049896027"
-            className="flex items-center gap-2 text-white border border-white/30 hover:border-white/60 font-semibold text-base px-8 py-4 rounded-full transition-colors w-full sm:w-auto justify-center"
-          >
-            <PhoneIcon />
-            Call (704) 989-6027
-          </a>
-        </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              href="/quote"
+              className="btn-shine bg-brand-green-light hover:bg-brand-green text-white font-bold text-base px-8 py-4 rounded-full transition-colors duration-300 w-full sm:w-auto text-center"
+              style={{
+                boxShadow: "0 0 40px rgba(61,143,66,0.35), 0 6px 20px rgba(0,0,0,0.40)",
+              }}
+            >
+              Request a Free Quote
+            </Link>
+            <a
+              href="tel:+17049896027"
+              className="flex items-center gap-2 text-white border border-white/30 hover:border-white/60 hover:bg-white/10 font-semibold text-base px-8 py-4 rounded-full transition-colors duration-300 w-full sm:w-auto justify-center"
+            >
+              <PhoneIcon />
+              Call (704) 989-6027
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

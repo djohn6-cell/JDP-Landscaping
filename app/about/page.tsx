@@ -3,21 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About JDP Landscaping | Charlotte, Marvin & Waxhaw NC",
+  title: "About JDP Landscaping | Waxhaw, Marvin & Weddington NC",
   description:
-    "JDP Landscaping is built on honesty, referrals, and doing right by our customers. Honest work, fair prices, no pressure — serving Charlotte, Marvin, Waxhaw, and surrounding areas.",
+    "JDP Landscaping is built on honesty, referrals, and doing right by our customers. Honest work, fair prices, no pressure — serving Waxhaw, Marvin, Weddington, and surrounding areas.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About JDP Landscaping | Charlotte, Marvin & Waxhaw NC",
+    title: "About JDP Landscaping | Waxhaw, Marvin & Weddington NC",
     description:
       "Honest work. Fair prices. No pressure. Learn about the people and values behind JDP Landscaping.",
     url: "/about",
     images: [
       {
-        url: "/images/projects/project-2-after.jpg",
+        url: "/images/og-card.jpg",
         width: 1200,
         height: 630,
-        alt: "JDP Landscaping — Charlotte, NC landscaping project",
+        alt: "JDP Landscaping — Landscaping Done Right",
       },
     ],
   },

@@ -40,16 +40,18 @@ const securityHeaders = [
   // To fully remove 'unsafe-inline', implement a nonce via middleware.ts (Next.js 13+ supports this).
   {
     key: "Content-Security-Policy",
+    // Jobber work request embed (quote form) needs its CDN for the snippet
+    // script + stylesheet, and its client hub origin for the form iframe.
     value: [
       "default-src 'self'",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://d3ey4dbjkt2f6s.cloudfront.net",
       // Remove 'unsafe-eval' in production builds (H4 partial fix)
-      `script-src 'self' 'unsafe-inline'${isProd ? "" : " 'unsafe-eval'"}`,
+      `script-src 'self' 'unsafe-inline' https://d3ey4dbjkt2f6s.cloudfront.net${isProd ? "" : " 'unsafe-eval'"}`,
       "font-src 'self' https://fonts.gstatic.com data:",
-      "img-src 'self' data: blob:",
-      "connect-src 'self'",
+      "img-src 'self' data: blob: https://d3ey4dbjkt2f6s.cloudfront.net",
+      "connect-src 'self' https://clienthub.getjobber.com https://d3ey4dbjkt2f6s.cloudfront.net",
       "object-src 'none'",
-      "frame-src 'none'",
+      "frame-src https://clienthub.getjobber.com",
       "form-action 'self'",
       "frame-ancestors 'none'",
       ...(isProd ? ["upgrade-insecure-requests"] : []),

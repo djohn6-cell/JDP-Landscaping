@@ -1,27 +1,27 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
+import AmbientGlow from "@/components/AmbientGlow";
 import SocialProof from "@/components/SocialProof";
 import ServiceTeaser from "@/components/ServiceTeaser";
 import OurWorkCTA from "@/components/OurWorkCTA";
 import HomepageCTA from "@/components/HomepageCTA";
 
 export const metadata: Metadata = {
-  title: "JDP Landscaping | Charlotte, Marvin & Waxhaw NC",
+  title: "JDP Landscaping | Waxhaw, Marvin & Weddington NC",
   description:
-    "Honest, high-quality landscaping in Charlotte, Marvin, Waxhaw, and surrounding areas. Trimming, mulching, removal, planting, and more. Free quote — no pressure.",
+    "Honest, high-quality landscaping in Waxhaw, Marvin, Weddington, and surrounding areas. Trimming, mulching, removal, planting, and more. Free quote — no pressure.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "JDP Landscaping | Charlotte, Marvin & Waxhaw NC",
+    title: "JDP Landscaping | Waxhaw, Marvin, Weddington & Surrounding Areas",
     description:
       "Honest, high-quality landscaping built to last. Call us for anything you need around your property.",
     url: "/",
     images: [
       {
-        url: "/images/projects/project-2-after.jpg",
+        url: "/images/og-card.jpg",
         width: 1200,
         height: 630,
-        alt: "JDP Landscaping — Charlotte, NC landscaping project",
+        alt: "JDP Landscaping — Landscaping Done Right",
       },
     ],
   },
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="bg-cream">
+      <AmbientGlow />
       <Hero />
-      <TrustBar />
       <SocialProof />
       <ServiceTeaser />
       <OurWorkCTA />

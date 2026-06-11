@@ -1,54 +1,57 @@
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 export default function OurWorkCTA() {
   return (
-    <section className="bg-white py-16 lg:py-20">
+    <section className="bg-cream py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Image collage */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-md">
-              <Image
-                src="/images/projects/home-ourwork-before.png"
-                alt="Before mulching project at a Charlotte-area property"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 50vw, 25vw"
-              />
-              <span className="absolute top-2 left-2 rounded-full bg-brand-dark/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
-                Before
-              </span>
+          <Reveal>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-mulch/10 shadow-md">
+                <Image
+                  src="/images/projects/home-ourwork-before.png"
+                  alt="Before mulching project at a Charlotte-area property"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                />
+                <span className="absolute top-2 left-2 rounded-full bg-brand-dark/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+                  Before
+                </span>
+              </div>
+              <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-mulch/10 shadow-md">
+                <Image
+                  src="/images/projects/home-ourwork-after.png"
+                  alt="After mulching project at a Charlotte-area property"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                />
+                <span className="absolute top-2 left-2 rounded-full bg-brand-green/90 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+                  After
+                </span>
+              </div>
+              <div className="group relative col-span-2 aspect-[16/7] overflow-hidden rounded-xl border border-mulch/10 shadow-md">
+                <Image
+                  src="/images/services/planting.jpg"
+                  alt="Landscaping transformation - JDP Landscaping Charlotte NC"
+                  fill
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-md">
-              <Image
-                src="/images/projects/home-ourwork-after.png"
-                alt="After mulching project at a Charlotte-area property"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 50vw, 25vw"
-              />
-              <span className="absolute top-2 left-2 rounded-full bg-brand-green/90 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
-                After
-              </span>
-            </div>
-            <div className="relative col-span-2 aspect-[16/7] overflow-hidden rounded-xl shadow-md">
-              <Image
-                src="/images/services/planting.jpg"
-                alt="Landscaping transformation - JDP Landscaping Charlotte NC"
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </div>
+          </Reveal>
 
           {/* Text + CTA */}
-          <div>
+          <Reveal delay={0.12}>
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-green">
               Our Work
             </p>
-            <h2 className="mb-4 font-heading text-3xl font-black leading-tight text-brand-dark sm:text-4xl">
+            <h2 className="mb-4 font-heading text-3xl font-black leading-tight text-brand-charcoal sm:text-4xl">
               See What a Real Transformation Looks Like
             </h2>
             <p className="mb-8 text-base leading-relaxed text-brand-charcoal/70">
@@ -58,12 +61,17 @@ export default function OurWorkCTA() {
             </p>
             <Link
               href="/our-work"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-green px-8 py-4 text-base font-bold text-white shadow-lg transition-colors hover:bg-brand-green-mid"
+              className="btn-shine group inline-flex items-center gap-2 rounded-full bg-brand-green px-8 py-4 text-base font-bold text-white transition-colors duration-300 hover:bg-brand-green-mid"
+              style={{
+                boxShadow: "0 10px 28px -8px rgba(43,94,46,0.45)",
+              }}
             >
               View Our Projects
-              <ArrowIcon />
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <ArrowIcon />
+              </span>
             </Link>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

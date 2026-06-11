@@ -38,11 +38,11 @@ const siteUrl = (() => {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "JDP Landscaping | Charlotte, Marvin & Waxhaw NC",
+  title: "JDP Landscaping | Waxhaw, Marvin & Weddington NC",
   description:
-    "Honest, high-quality landscaping in Charlotte, Marvin, Waxhaw, and surrounding areas. Trimming, mulching, removal, planting, and more. Free quote — no pressure.",
+    "Honest, high-quality landscaping in Waxhaw, Marvin, Weddington, and surrounding areas. Trimming, mulching, removal, planting, and more. Free quote — no pressure.",
   openGraph: {
-    title: "JDP Landscaping | Charlotte, Marvin & Waxhaw NC",
+    title: "JDP Landscaping | Waxhaw, Marvin, Weddington & Surrounding Areas",
     description:
       "Honest, high-quality landscaping built to last. Call us for anything you need around your property.",
     siteName: "JDP Landscaping",
@@ -50,10 +50,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/projects/project-2-after.jpg",
+        url: "/images/og-card.jpg",
         width: 1200,
         height: 630,
-        alt: "JDP Landscaping — Charlotte, NC landscaping project",
+        alt: "JDP Landscaping — Landscaping Done Right",
       },
     ],
   },

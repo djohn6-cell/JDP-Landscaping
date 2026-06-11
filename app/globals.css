@@ -8,6 +8,13 @@
   --color-brand-dark: #0F1A10;
   --color-brand-cream: #F5F4F1;
   --color-brand-charcoal: #1C1C1C;
+  /* Warm premium palette: cream surfaces, charcoal text, mulch brown
+     transition tones, terracotta micro-accents. Hero stays dark. */
+  --color-night: #0B0C0B;
+  --color-cream: #F5F1E7;
+  --color-cream-deep: #EFE8D9;
+  --color-mulch: #6E4F33;
+  --color-terra: #C9703F;
 
   --font-heading: var(--font-playfair);
   --font-body: var(--font-dm-sans);
@@ -53,6 +60,163 @@ video.hero-bg::-moz-media-controls {
 video.hero-bg {
   -webkit-appearance: none;
   object-fit: cover;
+}
+
+/* ===== Cinematic hero intro =====
+   The background zoom lives in the video itself (Remotion-rendered intro);
+   CSS handles the text choreography, gated on video start from Hero.tsx. */
+
+/* Brand slam: drops in from above-scale with motion blur and a tiny overshoot */
+@keyframes hero-slam {
+  0%   { opacity: 0; transform: scale(2.05) translateY(-10px); filter: blur(16px); }
+  55%  { opacity: 1; transform: scale(0.965) translateY(3px); filter: blur(0); }
+  78%  { transform: scale(1.02) translateY(-1px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+/* Supporting content: quiet fade-up */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-slam {
+  animation: hero-slam 0.55s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.hero-rise {
+  animation: hero-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Page-wide ambient light — warm sunlight glow that lazily trails the
+   cursor (slow lerp in AmbientGlow.tsx). soft-light reads on both the dark
+   hero and the cream sections: a gentle warm lift, never a hard spotlight. */
+.ambient-glow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 30;
+  width: 66rem;
+  height: 66rem;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(255, 173, 96, 0.45) 0%,
+    rgba(255, 173, 96, 0.18) 34%,
+    transparent 66%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 1s ease;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slam,
+  .hero-rise {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .hero-spotlight {
+    display: none;
+  }
+}
+
+/* ===== Dark theme micro-interactions (homepage sections) ===== */
+
+/* Scroll reveal — toggled by the Reveal component via IntersectionObserver */
+.reveal-item {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Light card on warm surfaces — soft lift on hover */
+.lift-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(110, 79, 51, 0.12);
+  box-shadow: 0 2px 12px rgba(28, 25, 18, 0.05);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.lift-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(110, 79, 51, 0.22);
+  box-shadow: 0 18px 40px -10px rgba(28, 25, 18, 0.18);
+}
+
+/* Floating bridge card — cream glass over the hero/gradient seam */
+.bridge-card {
+  background: rgba(251, 248, 242, 0.94);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 24px 60px -16px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.bridge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px -16px rgba(0, 0, 0, 0.55);
+}
+
+/* Shine sweep across buttons on hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  transform: translateX(-130%) skewX(-18deg);
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 70%
+  );
+  transition: transform 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(130%) skewX(-18deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .lift-card,
+  .lift-card:hover,
+  .bridge-card,
+  .bridge-card:hover {
+    transform: none;
+  }
+  .btn-shine::after {
+    display: none;
+  }
+  .ambient-glow {
+    display: none;
+  }
 }
 
 /* Sidebar vertical text */

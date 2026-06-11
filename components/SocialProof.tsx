@@ -1,3 +1,6 @@
+import Reveal from "@/components/Reveal";
+import CountUp from "@/components/CountUp";
+
 /* ── Data ── */
 
 interface Review {
@@ -18,12 +21,12 @@ const reviews: Review[] = [
     platform: "nextdoor",
     author: "Vickie Carrai",
     neighborhood: "Lake Forest Preserve",
-    body: "Hey, this is my go to guy for anything landscaping. He always does my bush trimming too. Today he and his crew spread my 17 cubic yards of mulch. It looks amazing! They came on time and worked so hard to get it done. They cleaned up everything so you didn\u2019t even know there was a pile of mulch on my driveway. James is hardworking, conscientious, pays attention to detail and very fair in pricing!",
+    body: "Hey, this is my go to guy for anything landscaping. He always does my bush trimming too. Today he and his crew spread my 17 cubic yards of mulch. It looks amazing! They came on time and worked so hard to get it done. They cleaned up everything so you didn’t even know there was a pile of mulch on my driveway. James is hardworking, conscientious, pays attention to detail and very fair in pricing!",
     avatarColor: "bg-purple-500",
     likes: 38,
     comments: 4,
     reply:
-      "Beautiful results! Thank you so much for making this post! \ud83d\ude4f",
+      "Beautiful results! Thank you so much for making this post! 🙏",
     image: "/images/reviews/vickie-carrai.png",
   },
   {
@@ -58,6 +61,44 @@ const reviews: Review[] = [
   },
   {
     platform: "nextdoor",
+    author: "Allie Parker",
+    neighborhood: "Barber Rock",
+    timestamp: "Jul 2024",
+    body: "James Picerno of JDP Landscaping recently spread mulch and trimmed several trees for us. He is very respectful, efficient and reasonable. He is eager to do whatever you ask of him.",
+    avatarColor: "bg-sky-600",
+    likes: 11,
+    comments: 1,
+  },
+  {
+    platform: "nextdoor",
+    author: "Brad Jessup",
+    neighborhood: "Legacy Park",
+    body: "As Spring arrived and we were preparing for our annual landscape refresh, I started dreading the labor required to complete the job. We also decided to replace a section of our wood mulch with river rock, which even further increased the dread. Long story short, we were thoroughly impressed with how hard his team worked, even in the heat and humidity of the day. Everyone arrived promptly, all were very polite, jumped straight into the work, and worked the entire day to complete the job. All in, they spread 13 yards of wood mulch, 2 yards of river rock, planted a new palm tree, trimmed several large shrubs, installed a mulch border for the rocks, and hauled away all of the debris. They completed a job in one day that would have taken us several weeks. The price was very reasonable, and I would gladly pay it again for the same results. If you're looking for help with your landscaping, James and his crew should be your first call!",
+    avatarColor: "bg-emerald-600",
+    likes: 25,
+    comments: 5,
+  },
+  {
+    platform: "nextdoor",
+    author: "Ken Russell",
+    neighborhood: "Providence Arbours",
+    timestamp: "May 2025",
+    body: "JDP Landscaping just completed a 50-yard mulch project at our property, and they did an excellent job. James and his team showed up when promised and completed everything across our large property, leaving it looking amazing and all cleaned up as if they had never been there. Great job and would use and recommend them!",
+    avatarColor: "bg-orange-500",
+    likes: 16,
+    comments: 3,
+  },
+  {
+    platform: "nextdoor",
+    author: "Hank Szulimowski",
+    neighborhood: "Sun City Carolina Lakes",
+    body: "Just had mulch put down in my yard by James and JDP Landscaping and it looks fantastic. Highly recommend James for a job well done!",
+    avatarColor: "bg-slate-500",
+    likes: 15,
+    comments: 1,
+  },
+  {
+    platform: "nextdoor",
     author: "Mary Purser",
     neighborhood: "Kensington Place",
     timestamp: "Sep 2023",
@@ -66,103 +107,83 @@ const reviews: Review[] = [
     likes: 10,
     comments: 2,
   },
-  {
-    platform: "nextdoor",
-    author: "Amy Miller",
-    neighborhood: "Weddington Chase",
-    timestamp: "Jun 2024",
-    body: "JDP did a fantastic job getting our dead shrubs handled and placing mulch. So thorough and professional. Highly recommend!!",
-    avatarColor: "bg-rose-500",
-    likes: 9,
-    comments: 2,
-  },
-  {
-    platform: "nextdoor",
-    author: "Paul Chemmanoor",
-    neighborhood: "Weddington Chase",
-    timestamp: "Apr 2025",
-    body: "I have worked with James for three years to get our yard mulched. He does an excellent job and was very professional and rescheduled the work to deal with rainy weather in a proactive manner. Highly recommended.",
-    avatarColor: "bg-teal-500",
-    likes: 8,
-    comments: 1,
-  },
-  {
-    platform: "nextdoor",
-    author: "Janine DAndrea",
-    neighborhood: "Ardrey",
-    timestamp: "Oct 2023",
-    body: "I needed some \u201Cfall clean-up\u201D for my yard and worked with James Picerno from JDP Landscaping. Good work/good pricing/good communication. Please consider for your yard needs.",
-    avatarColor: "bg-gray-600",
-    likes: 5,
-    comments: 1,
-  },
 ];
 
-const differentiators = [
-  {
-    title: "We show up when we say we will",
-    detail: "We respect your time. No guessing when we\u2019ll arrive.",
-    icon: <ClockIcon />,
-  },
-  {
-    title: "Competitive pricing",
-    detail: "Fair quotes, clear value, no surprises.",
-    icon: <TagIcon />,
-  },
-  {
-    title: "Call even if you\u2019re not sure yet",
-    detail:
-      "You don\u2019t need to know exactly what you need. We\u2019ll come take a look \u2014 no pressure.",
-    icon: <ChatIcon />,
-  },
-];
+/* Compact reviews that float across the hero seam */
+const bridgeAuthors = ["Leigh Ann Childs", "Steven Reynolds", "Allie Parker"];
+const bridgeReviews = bridgeAuthors.map(
+  (a) => reviews.find((r) => r.author === a)!,
+);
+const gridReviews = reviews.filter((r) => !bridgeAuthors.includes(r.author));
 
 /* ── Main Component ── */
 
 export default function SocialProof() {
   return (
-    <section className="bg-white py-12 lg:py-16">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Header — title left, stats right */}
-        <div className="mb-8 flex flex-col gap-6 lg:mb-10 lg:flex-row lg:items-end lg:justify-between">
+    <section className="relative bg-cream">
+      {/* Dark → mulch → cream fade behind the bridge cards */}
+      <div
+        className="absolute inset-x-0 top-0 h-[26rem] sm:h-96"
+        style={{
+          background:
+            "linear-gradient(180deg, #0B0C0B 0%, #1A1511 30%, #5F4A32 62%, rgba(245,241,231,0) 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-14 lg:pb-20">
+        {/* Floating bridge: trust line + three quote cards over the hero seam */}
+        <div className="-mt-16 sm:-mt-24">
+          <Reveal>
+            <p className="mb-5 text-center text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white/70 sm:mb-6 sm:text-xs">
+              Trusted by homeowners across the Carolinas
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3">
+            {bridgeReviews.map((review, i) => (
+              <Reveal key={review.author} delay={i * 0.1}>
+                <BridgeCard review={review} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Header — title left, stats right (on cream) */}
+        <div className="mt-16 mb-8 flex flex-col gap-6 lg:mt-24 lg:mb-10 lg:flex-row lg:items-end lg:justify-between">
           {/* Left — heading */}
-          <div className="shrink-0">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green-light">
+          <Reveal className="shrink-0">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
               Reviews
             </p>
-            <h2 className="font-heading text-3xl font-black leading-tight text-gray-900 sm:text-4xl lg:text-[2.75rem]">
+            <h2 className="font-heading text-3xl font-black leading-tight text-brand-charcoal sm:text-4xl lg:text-[2.75rem]">
               What Your Neighbors
               <br className="hidden sm:block" /> Are Saying
             </h2>
-          </div>
+          </Reveal>
 
           {/* Right — stats + trophies */}
-          <div className="flex flex-col items-start gap-3 lg:items-end">
+          <Reveal delay={0.12} className="flex flex-col items-start gap-3 lg:items-end">
             {/* Stats row */}
             <div className="flex items-end gap-0">
               {/* Google rating */}
-              <div className="pr-4 sm:pr-5 lg:border-r lg:border-gray-200 lg:pr-6">
-                <p className="text-2xl font-black text-gray-900 sm:text-3xl">5.0</p>
+              <div className="pr-4 sm:pr-5 lg:border-r lg:border-mulch/15 lg:pr-6">
+                <p className="text-2xl font-black text-brand-charcoal sm:text-3xl">
+                  <CountUp value={5} decimals={1} />
+                </p>
                 <div className="mt-0.5 flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <svg
-                      key={i}
-                      className="h-3 w-3 text-yellow-400 sm:h-3.5 sm:w-3.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      aria-hidden="true"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+                    <StarIcon key={i} />
                   ))}
                 </div>
-                <p className="mt-1 text-[10px] text-gray-400 sm:text-xs">on Google</p>
+                <p className="mt-1 text-[10px] text-brand-charcoal/45 sm:text-xs">on Google</p>
               </div>
 
               {/* Nextdoor favorites */}
-              <div className="border-l border-gray-200 px-4 sm:px-5 lg:border-r lg:px-6">
-                <p className="text-2xl font-black text-gray-900 sm:text-3xl">91</p>
-                <p className="mt-1 text-[10px] leading-tight text-gray-400 sm:text-xs">
+              <div className="border-l border-mulch/15 px-4 sm:px-5 lg:border-r lg:px-6">
+                <p className="text-2xl font-black text-brand-charcoal sm:text-3xl">
+                  <CountUp value={91} />
+                </p>
+                <p className="mt-1 text-[10px] leading-tight text-brand-charcoal/45 sm:text-xs">
                   Favorites
                   <br />
                   on Nextdoor
@@ -170,11 +191,12 @@ export default function SocialProof() {
               </div>
 
               {/* Neighborhood Fave count */}
-              <div className="border-l border-gray-200 pl-4 sm:pl-5 lg:px-6">
-                <p className="text-2xl font-black text-gray-900 sm:text-3xl">
-                  4<span className="text-lg sm:text-xl">&times;</span>
+              <div className="border-l border-mulch/15 pl-4 sm:pl-5 lg:px-6">
+                <p className="text-2xl font-black text-brand-charcoal sm:text-3xl">
+                  <CountUp value={4} duration={1} />
+                  <span className="text-lg text-terra sm:text-xl">&times;</span>
                 </p>
-                <p className="mt-1 text-[10px] leading-tight text-gray-400 sm:text-xs">
+                <p className="mt-1 text-[10px] leading-tight text-brand-charcoal/45 sm:text-xs">
                   Neighborhood
                   <br />
                   Fave
@@ -188,60 +210,87 @@ export default function SocialProof() {
                 {[2025, 2024, 2023, 2022].map((year) => (
                   <div
                     key={year}
-                    className="flex h-11 w-11 flex-col items-center justify-center rounded-full border-2 border-gray-300"
+                    className="flex h-11 w-11 flex-col items-center justify-center rounded-full border-2 border-mulch/25 transition-colors duration-300 hover:border-terra/60"
                   >
                     <TrophyIcon />
-                    <span className="mt-px text-[8px] font-bold leading-none text-gray-400">
+                    <span className="mt-px text-[8px] font-bold leading-none text-brand-charcoal/45">
                       {year}
                     </span>
                   </div>
                 ))}
               </div>
               <div className="hidden sm:block">
-                <p className="text-sm font-semibold text-gray-900">
+                <p className="text-sm font-semibold text-brand-charcoal">
                   Neighborhood Fave
                 </p>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-brand-charcoal/45">
                   4 years running on Nextdoor
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Divider */}
-        <div className="mb-8 border-t border-gray-100 lg:mb-10" />
+        <div className="mb-8 border-t border-mulch/10 lg:mb-10" />
 
-        {/* Review cards — 2-col on md+ */}
-        <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-4 md:grid-cols-2 md:gap-5">
-          {reviews.map((review) => (
-            <ReviewCard key={review.author} review={review} />
-          ))}
-        </div>
-
-        {/* Differentiator chips */}
-        <div className="mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
-          {differentiators.map((d) => (
-            <div
-              key={d.title}
-              className="flex items-start gap-2.5 rounded-2xl border border-black/5 bg-brand-cream p-4"
-            >
-              <div className="mt-0.5 shrink-0 text-brand-green-light">
-                {d.icon}
-              </div>
-              <div>
-                <p className="text-[13px] font-bold leading-snug text-brand-dark">
-                  {d.title}
-                </p>
-                <p className="mt-0.5 text-[11px] leading-snug text-brand-charcoal/55">
-                  {d.detail}
-                </p>
-              </div>
+        {/* Review cards — two independent columns on md+ so short cards stack
+            tightly under tall neighbors instead of inheriting grid-row gaps */}
+        <div className="mx-auto max-w-5xl space-y-4 md:flex md:items-start md:gap-5 md:space-y-0">
+          {[0, 1].map((col) => (
+            <div key={col} className="space-y-4 md:flex-1 md:space-y-5">
+              {gridReviews
+                .filter((_, i) => i % 2 === col)
+                .map((review, i) => (
+                  <Reveal
+                    key={review.author}
+                    delay={Math.min((i * 2 + col) * 0.06, 0.3)}
+                  >
+                    <ReviewCard review={review} />
+                  </Reveal>
+                ))}
             </div>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+/* ── Bridge Card (compact floating quote) ── */
+
+function BridgeCard({ review }: { review: Review }) {
+  const initial = review.author.charAt(0);
+
+  return (
+    <div className="bridge-card h-full rounded-2xl p-5">
+      <div className="flex items-center justify-between">
+        <div className="flex gap-0.5">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <StarIcon key={i} />
+          ))}
+        </div>
+        <PlatformIcon platform={review.platform} />
+      </div>
+
+      <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/85 line-clamp-4">
+        {review.body}
+      </p>
+
+      <div className="mt-4 flex items-center gap-2.5">
+        <div
+          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${review.avatarColor}`}
+        >
+          {initial}
+        </div>
+        <div>
+          <p className="text-xs font-bold text-brand-charcoal">{review.author}</p>
+          <p className="text-[11px] text-brand-charcoal/50">
+            {review.neighborhood ?? "Google review"}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -251,7 +300,7 @@ function ReviewCard({ review }: { review: Review }) {
   const initial = review.author.charAt(0);
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4 sm:p-5">
+    <div className="lift-card rounded-xl p-4 sm:p-5">
       {/* Post header */}
       <div className="flex items-start gap-3">
         {/* Avatar */}
@@ -263,10 +312,10 @@ function ReviewCard({ review }: { review: Review }) {
 
         {/* Name + meta */}
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-gray-900">
+          <p className="text-sm font-semibold text-brand-charcoal">
             {review.author}
           </p>
-          <div className="flex items-center gap-1 text-xs text-gray-400">
+          <div className="flex items-center gap-1 text-xs text-brand-charcoal/45">
             {review.neighborhood && (
               <>
                 <span>{review.neighborhood}</span>
@@ -291,7 +340,7 @@ function ReviewCard({ review }: { review: Review }) {
       </div>
 
       {/* Body */}
-      <p className="mt-3 text-sm leading-relaxed text-gray-700">
+      <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75">
         {review.body}
       </p>
 
@@ -309,44 +358,44 @@ function ReviewCard({ review }: { review: Review }) {
 
       {/* JDP reply */}
       {review.reply && (
-        <div className="ml-4 mt-3 border-l-2 border-brand-green-light/30 pl-3">
+        <div className="ml-4 mt-3 border-l-2 border-brand-green/30 pl-3">
           <div className="flex items-center gap-2">
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-green text-[10px] font-bold text-white">
               J
             </div>
-            <span className="text-xs font-semibold text-gray-700">
+            <span className="text-xs font-semibold text-brand-charcoal/70">
               JDP Landscaping
             </span>
           </div>
-          <p className="mt-1 text-xs leading-relaxed text-gray-500">
+          <p className="mt-1 text-xs leading-relaxed text-brand-charcoal/50">
             {review.reply}
           </p>
         </div>
       )}
 
       {/* Action bar */}
-      <div className="mt-3 flex items-center gap-5 border-t border-gray-100 pt-3">
+      <div className="mt-3 flex items-center gap-5 border-t border-mulch/10 pt-3">
         {review.likes > 0 ? (
-          <span className="flex items-center gap-1.5 text-xs text-gray-400">
+          <span className="flex items-center gap-1.5 text-xs text-brand-charcoal/40 transition-colors duration-300 hover:text-rose-500">
             <HeartIcon />
             {review.likes}
           </span>
         ) : (
-          <span className="flex items-center gap-1.5 text-xs text-gray-400">
+          <span className="flex items-center gap-1.5 text-xs text-brand-charcoal/40 transition-colors duration-300 hover:text-rose-500">
             <HeartIcon />
           </span>
         )}
         {review.comments > 0 ? (
-          <span className="flex items-center gap-1.5 text-xs text-gray-400">
+          <span className="flex items-center gap-1.5 text-xs text-brand-charcoal/40">
             <CommentIcon />
             {review.comments}
           </span>
         ) : (
-          <span className="flex items-center gap-1.5 text-xs text-gray-400">
+          <span className="flex items-center gap-1.5 text-xs text-brand-charcoal/40">
             <CommentIcon />
           </span>
         )}
-        <span className="flex items-center gap-1.5 text-xs text-gray-400">
+        <span className="flex items-center gap-1.5 text-xs text-brand-charcoal/40">
           <ShareIcon />
         </span>
         {review.platform === "nextdoor" && (
@@ -366,10 +415,23 @@ function ReviewCard({ review }: { review: Review }) {
 
 /* ── Icons ── */
 
+function StarIcon() {
+  return (
+    <svg
+      className="h-3 w-3 text-amber-500 sm:h-3.5 sm:w-3.5"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+    >
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+    </svg>
+  );
+}
+
 function TrophyIcon() {
   return (
     <svg
-      className="h-3.5 w-3.5 text-gray-400"
+      className="h-3.5 w-3.5 text-mulch/60"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -489,7 +551,7 @@ function ShareIcon() {
 function DotsIcon() {
   return (
     <svg
-      className="h-4 w-4 text-gray-300"
+      className="h-4 w-4 text-brand-charcoal/25"
       viewBox="0 0 24 24"
       fill="currentColor"
       aria-hidden="true"
@@ -504,7 +566,7 @@ function DotsIcon() {
 function GlobeIcon() {
   return (
     <svg
-      className="h-3 w-3 text-gray-400"
+      className="h-3 w-3 text-brand-charcoal/40"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -512,64 +574,7 @@ function GlobeIcon() {
       aria-hidden="true"
     >
       <circle cx={12} cy={12} r={10} />
-      <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg
-      className="h-[18px] w-[18px]"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-  );
-}
-
-function TagIcon() {
-  return (
-    <svg
-      className="h-[18px] w-[18px]"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z"
-      />
-    </svg>
-  );
-}
-
-function ChatIcon() {
-  return (
-    <svg
-      className="h-[18px] w-[18px]"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-      />
+      <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
     </svg>
   );
 }
