@@ -113,7 +113,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex h-screen min-h-[600px] w-full items-start justify-center overflow-hidden pt-32 sm:items-center sm:pt-0"
+      className="relative flex min-h-[100svh] w-full items-start justify-center overflow-hidden pt-32 pb-24 sm:items-center sm:pt-0 sm:pb-0"
     >
       {/* Video background: loop sits beneath the play-once intro */}
       <div className="absolute inset-0" aria-hidden="true">
@@ -169,7 +169,7 @@ export default function Hero() {
           style={eyebrow.style}
         >
           Waxhaw&nbsp;&bull;&nbsp;Marvin&nbsp;&bull;&nbsp;Weddington&nbsp;&bull;&nbsp;Indian
-          Land&nbsp;&bull;&nbsp;Surrounding Areas
+          Land&nbsp;&bull;&nbsp;South CLT&nbsp;&bull;&nbsp;Monroe&nbsp;&bull;&nbsp;Surrounding Areas
         </p>
 
         {/* Brand lockup: JDP slams first, tagline slams under it */}
@@ -303,7 +303,7 @@ export default function Hero() {
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
             </svg>
             <span className="text-xs font-semibold text-white">
-              90+ Favorites on Nextdoor
+              95+ Favorites on Nextdoor
             </span>
           </a>
         </div>

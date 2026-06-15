@@ -181,7 +181,7 @@ export default function SocialProof() {
               {/* Nextdoor favorites */}
               <div className="border-l border-mulch/15 px-4 sm:px-5 lg:border-r lg:px-6">
                 <p className="text-2xl font-black text-brand-charcoal sm:text-3xl">
-                  <CountUp value={91} />
+                  <CountUp value={95} />
                 </p>
                 <p className="mt-1 text-[10px] leading-tight text-brand-charcoal/45 sm:text-xs">
                   Favorites

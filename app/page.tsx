@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Honest, high-quality landscaping in Waxhaw, Marvin, Weddington, and surrounding areas. Trimming, mulching, removal, planting, and more. Free quote — no pressure.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "JDP Landscaping | Waxhaw, Marvin, Weddington & Surrounding Areas",
+    title: "Book a Free Quote Now",
     description:
       "Honest, high-quality landscaping built to last. Call us for anything you need around your property.",
     url: "/",
