@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LOCATIONS } from "@/lib/locations";
 
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
   { label: "Home", href: "/#hero" },
+  { label: "Services", href: "/services" },
+  { label: "Drainage", href: "/services/drainage" },
+  { label: "Rock & Stone", href: "/services/rock-features" },
   { label: "About", href: "/about" },
   { label: "Our Work", href: "/our-work" },
   { label: "FAQ", href: "/faq" },
@@ -17,16 +21,19 @@ const legalLinks = [
   { label: "Terms & Conditions", href: "/terms-and-conditions" },
 ];
 
+// Realigned Oct 2026 to the south-metro core the crew actually drives to.
 const serviceAreas = [
-  "Charlotte",
-  "Marvin",
   "Waxhaw",
+  "Marvin",
+  "Weddington",
+  "Charlotte",
   "Ballantyne",
   "Pineville",
   "Matthews",
   "Indian Trail",
   "Stallings",
   "Mint Hill",
+  "Monroe",
   "Union County",
 ];
 
@@ -58,7 +65,24 @@ export default function Footer() {
                 Service Area
               </p>
               <p className="text-white/50 text-xs leading-relaxed">
-                {serviceAreas.join(" · ")}
+                {serviceAreas.map((area, i) => {
+                  const match = LOCATIONS.find((l) => l.name === area);
+                  return (
+                    <span key={area}>
+                      {i > 0 ? " · " : ""}
+                      {match ? (
+                        <Link
+                          href={`/locations/${match.slug}`}
+                          className="hover:text-white/90 hover:underline transition-colors"
+                        >
+                          {area}
+                        </Link>
+                      ) : (
+                        area
+                      )}
+                    </span>
+                  );
+                })}
               </p>
             </div>
           </div>
@@ -117,7 +141,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-white/60 text-sm">
                 <LocationIcon />
-                <span>Charlotte, NC &amp; surrounding areas</span>
+                <span>Waxhaw, NC &mdash; serving Union County &amp; south Charlotte</span>
               </li>
             </ul>
           </div>

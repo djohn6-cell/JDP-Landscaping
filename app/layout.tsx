@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { DM_Sans, Montserrat, Playfair_Display, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { SERVICES } from "@/lib/services";
+import { BUSINESS_ID, SITE_URL } from "@/lib/site";
 import StickyNav from "@/components/StickyNav";
 import StickyCTAs from "@/components/StickyCTAs";
 import Footer from "@/components/Footer";
@@ -31,16 +33,13 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["500", "600", "700"],
 });
 
-const siteUrl = (() => {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL;
-  try { return new URL(raw ?? "").href; } catch { return "http://localhost:3000"; }
-})();
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "JDP Landscaping | Waxhaw, Marvin & Weddington NC",
   description:
-    "Honest, high-quality landscaping in Waxhaw, Marvin, Weddington, and surrounding areas. Trimming, mulching, removal, planting, and more. Free quote — no pressure.",
+    "Honest, high-quality landscaping, yard drainage, and stone work in Waxhaw, Marvin, Weddington, and surrounding areas. Trimming, mulching, planting, French drains, and dry creek beds. Free quote — no pressure.",
   openGraph: {
     title: "Book a Free Quote Now",
     description:
@@ -62,42 +61,52 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "@id": siteUrl,
+  "@id": BUSINESS_ID,
   name: "JDP Landscaping",
   description:
-    "Honest, high-quality landscaping in Charlotte, Marvin, Waxhaw, and surrounding areas. Trimming, mulching, removal, planting, and more.",
+    "Honest, high-quality landscaping, yard drainage, and stone work in Waxhaw, Marvin, Weddington, and the south Charlotte area. Trimming, mulching, removal, planting, cleanups, French drains, and dry creek beds.",
   telephone: "+17049896027",
   email: "Jdp@jdplandscaping.com",
   url: siteUrl,
+  image: `${siteUrl}/images/logo.jpeg`,
+  logo: `${siteUrl}/images/logo.jpeg`,
+  sameAs: ["https://nextdoor.com/pages/jdp-landscaping-waxhaw-nc/"],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Waxhaw",
     addressRegion: "NC",
     addressCountry: "US",
   },
+  // Realigned Oct 2026 to the south-metro service area. Huntersville and
+  // Concord removed — they are north of the city, outside where the crew works.
   areaServed: [
-    { "@type": "City", name: "Charlotte", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Marvin", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Waxhaw", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Ballantyne", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Pineville", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Matthews", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Indian Trail", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Stallings", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Mint Hill", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Huntersville", addressRegion: "NC", addressCountry: "US" },
-    { "@type": "City", name: "Concord", addressRegion: "NC", addressCountry: "US" },
-  ],
+    "Waxhaw",
+    "Marvin",
+    "Weddington",
+    "Charlotte",
+    "Ballantyne",
+    "Pineville",
+    "Matthews",
+    "Indian Trail",
+    "Stallings",
+    "Mint Hill",
+    "Monroe",
+    "Wesley Chapel",
+  ].map((name) => ({
+    "@type": "City",
+    name,
+    addressRegion: "NC",
+    addressCountry: "US",
+  })),
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Landscaping Services",
-    itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Lawn Trimming" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mulching" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tree and Shrub Removal" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Planting" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yard Cleanup" } },
-    ],
+    name: "Landscaping, Drainage & Stone Services",
+    itemListElement: SERVICES.flatMap((service) =>
+      service.schemaNames.map((name) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name },
+      }))
+    ),
   },
 };
 

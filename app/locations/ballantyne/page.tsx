@@ -2,33 +2,33 @@ import type { Metadata } from "next";
 import LocationPageTemplate, { locationSchema } from "@/components/LocationPageTemplate";
 import { getLocation } from "@/lib/locations";
 
-const location = getLocation("charlotte")!;
+const location = getLocation("ballantyne")!;
 
 export const metadata: Metadata = {
-  title: "Charlotte Landscaping & Drainage | JDP Landscaping",
+  title: "Ballantyne Landscaping & Drainage | JDP Landscaping",
   description:
-    "Landscaping, yard drainage and stone work for Charlotte, NC homeowners. Mulching, trimming, cleanups, French drains. Free quotes — (704) 989-6027.",
-  alternates: { canonical: "/locations/charlotte" },
+    "Landscaping, yard drainage and stone work for Ballantyne, NC homeowners. Mulching, trimming, cleanups, French drains. Free quotes — (704) 989-6027.",
+  alternates: { canonical: "/locations/ballantyne" },
   openGraph: {
     siteName: "JDP Landscaping",
     locale: "en_US",
     type: "website",
-    title: "Charlotte Landscaping & Drainage | JDP Landscaping",
+    title: "Ballantyne Landscaping & Drainage | JDP Landscaping",
     description:
-      "Landscaping, drainage, and stone work for Charlotte homeowners. Free quotes — no contracts.",
-    url: "/locations/charlotte",
+      "Landscaping, drainage, and stone work for Ballantyne homeowners. Free quotes — no contracts.",
+    url: "/locations/ballantyne",
     images: [
       {
         url: "/images/og-card.jpg",
         width: 1200,
         height: 630,
-        alt: "JDP Landscaping — Charlotte, NC landscaping and drainage",
+        alt: "JDP Landscaping — Ballantyne, NC landscaping and drainage",
       },
     ],
   },
 };
 
-export default function CharlottePage() {
+export default function BallantynePage() {
   return (
     <>
       <script

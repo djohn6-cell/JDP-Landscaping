@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const navLinks = [
   { label: "Home", href: "/#hero" },
+  { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Our Work", href: "/our-work" },
   { label: "Contact", href: "/quote" },
@@ -40,7 +41,9 @@ export default function StickyNav() {
               height={72}
               className="h-11 w-11 rounded object-contain sm:h-[72px] sm:w-[72px]"
             />
-            <span className="font-heading font-bold text-xl tracking-wide hidden sm:block text-white drop-shadow-sm">
+            {/* Held back to lg: between sm and lg the wordmark, six nav links,
+                phone and quote button compete for the same row and collide. */}
+            <span className="font-heading font-bold text-xl tracking-wide hidden lg:block text-white drop-shadow-sm">
               JDP LANDSCAPING
             </span>
           </Link>
@@ -67,7 +70,7 @@ export default function StickyNav() {
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="tel:+17049896027"
-              className="hidden sm:flex items-center gap-2 border text-base font-semibold px-5 py-2.5 rounded-full transition-colors border-white/30 hover:border-white/60 text-white"
+              className="hidden lg:flex items-center gap-2 border text-base font-semibold px-5 py-2.5 rounded-full transition-colors border-white/30 hover:border-white/60 text-white whitespace-nowrap"
             >
               <PhoneIcon />
               (704) 989-6027

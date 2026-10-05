@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | JDP Landscaping | Charlotte NC",
+  title: "Landscaping & Drainage FAQ | Waxhaw NC | JDP Landscaping",
   description:
-    "Answers to common questions about JDP Landscaping — services offered, service area, how to get a quote, scheduling, insurance, and more. Serving Charlotte, Marvin, Waxhaw, and surrounding areas.",
+    "Common questions about JDP Landscaping — drainage, stone work, service area, quotes, scheduling and insurance. Serving Waxhaw and south Charlotte.",
   alternates: { canonical: "/faq" },
   openGraph: {
+    siteName: "JDP Landscaping",
+    locale: "en_US",
+    type: "website",
     title: "Frequently Asked Questions | JDP Landscaping",
     description:
       "Common questions about JDP Landscaping services, service area, and process.",
@@ -16,7 +19,7 @@ export const metadata: Metadata = {
         url: "/images/projects/project-2-after.jpg",
         width: 1200,
         height: 630,
-        alt: "JDP Landscaping — Charlotte, NC landscaping project",
+        alt: "JDP Landscaping — Waxhaw, NC landscaping and drainage",
       },
     ],
   },
@@ -26,12 +29,32 @@ const faqs = [
   {
     question: "What services does JDP Landscaping offer?",
     answer:
-      "We offer mulching, lawn trimming, shrub and tree removal, planting, and seasonal yard cleanups. Whether you need routine maintenance or a full property transformation, we handle it all.",
+      "We offer mulching, lawn trimming, shrub and tree removal, planting, and seasonal yard cleanups, plus yard drainage and rock and stone work — French drains, surface drains, dry creek beds, boulder placement, stone borders, and retaining walls. Whether you need routine maintenance or a real fix, we handle it.",
   },
   {
     question: "What areas does JDP Landscaping serve?",
     answer:
-      "We serve Charlotte, Marvin, Waxhaw, Ballantyne, Pineville, Matthews, Indian Trail, Stallings, Mint Hill, Huntersville, Concord, and surrounding communities in the greater Charlotte, NC area.",
+      "We are based in Waxhaw and serve Marvin, Weddington, Ballantyne, Indian Trail, Matthews, Pineville, Stallings, Mint Hill, Monroe, Wesley Chapel, and south Charlotte — Union County and southern Mecklenburg County.",
+  },
+  {
+    question: "Do you fix standing water and drainage problems?",
+    answer:
+      "Yes. Drainage is one of our main services. We install French drains, surface and catch basin drains, downspout extensions, dry creek beds, and grading work, and we handle erosion control on slopes. If your yard holds water after it rains, send us a photo of where it sits and we will tell you what it needs.",
+  },
+  {
+    question: "What does a drainage job cost?",
+    answer:
+      "It depends on the length of the run, how deep it has to go, and where the water can be discharged. Nationally most yard drainage projects land between $3,000 and $4,000, with small fixes coming in well under that. We quote every job after seeing the property rather than guessing over the phone.",
+  },
+  {
+    question: "Do you build dry creek beds and stone retaining walls?",
+    answer:
+      "Yes. Dry creek beds are one of our most-requested projects because they solve a drainage problem and look like a landscape feature at the same time. We also set feature boulders, build stone borders, and construct boulder and stacked stone retaining walls on a proper base with drainage behind them.",
+  },
+  {
+    question: "Can drainage and stone work be done in winter?",
+    answer:
+      "Yes, and winter is often the better time. The ground is bare, plants are dormant, and there is much less to work around. Drainage and stone work are two of the few landscaping jobs that do not have to wait for spring.",
   },
   {
     question: "How do I get a free quote?",

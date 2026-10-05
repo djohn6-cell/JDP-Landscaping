@@ -1,6 +1,20 @@
 import Image from "next/image";
+import React from "react";
 
-const services = [
+/**
+ * Explicitly typed so `className` stays available per image. It is an escape
+ * hatch for photos that need correcting in-place (a rotate, an object-position
+ * nudge); no card uses it right now, but inferring the type would silently drop
+ * it the moment the last consumer is removed.
+ */
+type ServiceCard = {
+  name: string;
+  description: string;
+  icon: React.ReactNode;
+  images: { src: string; label: string; className?: string }[];
+};
+
+const services: ServiceCard[] = [
   {
     name: "Mulching",
     description: "Fresh dark mulch that protects your plants, holds moisture, and makes every bed look sharp.",
@@ -11,17 +25,13 @@ const services = [
     ],
   },
   {
-    name: "Cleanups",
-    description: "Seasonal and post-storm cleanups — debris removed, beds cleared, property looking fresh.",
-    icon: <DecorIcon />,
-    images: [
-      { src: "/images/services/cleanup-before.jpg", label: "Before" },
-      { src: "/images/services/cleanup-after.jpg", label: "After", className: "rotate-180" },
-    ],
-  },
-  {
-    name: "Removal",
-    description: "Trees, shrubs, and overgrowth — cleared cleanly and hauled away.",
+    // Merged Oct 2026 — the same visit in practice, and six services divide
+    // evenly into every grid on the site where seven left an orphan card.
+    // Uses the removal pair: more dramatic, and avoids the cleanup photo's
+    // rotate-180 workaround.
+    name: "Cleanups & Removal",
+    description:
+      "Seasonal and post-storm cleanups, plus trees, shrubs, and overgrowth cleared and hauled away.",
     icon: <RemoveIcon />,
     images: [
       { src: "/images/services/removal-before-v2.jpg", label: "Before" },
@@ -45,6 +55,26 @@ const services = [
       { src: "/images/services/planting-before.jpg", label: "Before" },
       { src: "/images/services/planting-after.jpg", label: "After" },
     ],
+  },
+  // Added Oct 2026 — the rock & drainage expansion. Photos pending; these two
+  // render icon-only until imagery is supplied. Canonical copy: lib/services.ts
+  {
+    name: "Drainage",
+    description:
+      "Standing water, soggy spots, and runoff heading for the house — solved at the source.",
+    icon: <DrainIcon />,
+    images: [
+      { src: "/images/drainage/drain-line-before.jpg", label: "Before" },
+      { src: "/images/drainage/dry-creek-bed-after.jpg", label: "After" },
+    ],
+  },
+  {
+    name: "Rock & Stone",
+    description:
+      "Dry creek beds, boulder placement, stone borders, and retaining walls that hold the grade.",
+    icon: <RockIcon />,
+    // AI reference image — see PHOTOS-NEEDED.md. Swap for real stone work.
+    images: [{ src: "/images/rock/stone-fire-feature.jpg", label: "Finished" }],
   },
 ];
 
@@ -144,19 +174,20 @@ export default function Services() {
             </div>
           ))}
 
-          {/* CTA card */}
-          <div className="bg-brand-dark rounded-2xl p-8 flex flex-col justify-between">
+          {/* CTA card — spans the full row so the six service cards stay an
+              even 3x2 (and 2x3 at sm) instead of leaving an orphan. */}
+          <div className="bg-brand-dark rounded-2xl p-8 flex flex-col gap-6 sm:col-span-2 lg:col-span-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="font-heading font-bold text-white text-xl mb-2">
                 Not sure where to start?
               </h3>
-              <p className="text-white/70 text-sm leading-relaxed">
+              <p className="text-white/70 text-sm leading-relaxed sm:max-w-xl">
                 Give us a call. We&apos;re real people who answer, and we&apos;re happy to talk through what your property needs.
               </p>
             </div>
             <a
               href="tel:+17049896027"
-              className="mt-6 flex items-center gap-2 bg-brand-green hover:bg-brand-green-mid text-white font-bold text-sm px-5 py-3 rounded-full transition-colors w-fit"
+              className="flex shrink-0 items-center gap-2 bg-brand-green hover:bg-brand-green-mid text-white font-bold text-sm px-5 py-3 rounded-full transition-colors w-fit"
             >
               <PhoneIcon />
               Call Now
@@ -200,10 +231,22 @@ function PlantIcon() {
   );
 }
 
-function DecorIcon() {
+
+function DrainIcon() {
   return (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3c0 0-5.5 6.1-5.5 9.6a5.5 5.5 0 0011 0C17.5 9.1 12 3 12 3z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 20h18" />
+    </svg>
+  );
+}
+
+function RockIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 19l4.2-6.3a1.6 1.6 0 012.6 0L13 19" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l3.6-5.1a1.5 1.5 0 012.5 0L22 19" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 19h20" />
     </svg>
   );
 }

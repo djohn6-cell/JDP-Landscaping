@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 const services: {
   name: string;
+  href?: string;
   icon: React.ReactNode;
   img: string | null;
   imgAlt: string | null;
@@ -19,7 +21,7 @@ const services: {
     name: "Trimming",
     icon: <TrimIcon />,
     img: null,
-    imgAlt: "Shrub and hedge trimming — JDP Landscaping Charlotte NC",
+    imgAlt: "Shrub and hedge trimming — JDP Landscaping Waxhaw NC",
     beforeAfter: {
       before: "/images/services/trim-before-v2.jpg",
       after: "/images/services/trim-after-v2.jpg",
@@ -28,18 +30,19 @@ const services: {
   {
     name: "Mulching",
     icon: <MulchIcon />,
+    img: "/images/projects/project-1.jpg",
+    imgAlt: "Mulch bed installation — JDP Landscaping Waxhaw NC",
     beforeAfter: {
       before: "/images/projects/ba1-before.jpg",
       after: "/images/projects/ba1-after.jpg",
     },
-    img: "/images/projects/project-1.jpg",
-    imgAlt: "Mulch bed installation — JDP Landscaping Charlotte NC",
   },
   {
-    name: "Removal",
+    // Merged Oct 2026 — see components/Services.tsx and lib/services.ts.
+    name: "Cleanups & Removal",
     icon: <RemoveIcon />,
     img: null,
-    imgAlt: "Tree and shrub removal — JDP Landscaping Charlotte NC",
+    imgAlt: "Yard cleanup and shrub removal — JDP Landscaping Waxhaw NC",
     beforeAfter: {
       before: "/images/services/removal-before-v2.jpg",
       after: "/images/services/removal-after-v2.jpg",
@@ -51,24 +54,33 @@ const services: {
     name: "Planting",
     icon: <PlantIcon />,
     img: null,
-    imgAlt: "Garden planting — JDP Landscaping Charlotte NC",
+    imgAlt: "Garden planting — JDP Landscaping Waxhaw NC",
     beforeAfter: {
       before: "/images/services/planting-before.jpg",
       after: "/images/services/planting-after.jpg",
     },
   },
   {
-    name: "Cleanups",
-    icon: <CleanupIcon />,
+    name: "Drainage",
+    href: "/services/drainage",
+    icon: <DrainIcon />,
     img: null,
-    imgAlt: "Property cleanup — JDP Landscaping Charlotte NC",
+    imgAlt: "Yard drainage and French drain installation — JDP Landscaping Waxhaw NC",
     beforeAfter: {
-      before: "/images/services/cleanup-before.jpg",
-      after: "/images/services/cleanup-after.jpg",
-      beforePos: "center 40%",
-      afterPos: "center 40%",
-      afterClassName: "rotate-180",
+      before: "/images/drainage/drain-line-before.jpg",
+      after: "/images/drainage/dry-creek-bed-after.jpg",
+      beforePos: "center 55%",
+      afterPos: "center 50%",
     },
+  },
+  {
+    name: "Rock & Stone",
+    href: "/services/rock-features",
+    icon: <RockIcon />,
+    // AI reference image — see the note in app/services/rock-features/page.tsx
+    // and PHOTOS-NEEDED.md. Swap for real stone work when photographed.
+    img: "/images/rock/stone-fire-feature.jpg",
+    imgAlt: "Stone fire feature in a finished outdoor living area",
   },
 ];
 
@@ -92,8 +104,10 @@ export default function ServiceTeaser() {
         <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {services.map((service, i) => (
             <Reveal key={service.name} delay={i * 0.06}>
-            <div
-              className="group lift-card overflow-hidden rounded-2xl"
+            <Link
+              href={service.href ?? "/services"}
+              aria-label={`${service.name} — see details`}
+              className="group lift-card block overflow-hidden rounded-2xl"
             >
               {service.beforeAfter ? (
                 <div className="flex aspect-[4/3] overflow-hidden">
@@ -144,28 +158,33 @@ export default function ServiceTeaser() {
               <div className="px-4 py-3 text-center">
                 <p className="text-sm font-extrabold text-brand-charcoal">{service.name}</p>
               </div>
-            </div>
+            </Link>
             </Reveal>
           ))}
 
-          <Reveal delay={services.length * 0.06}>
-          <div className="group lift-card overflow-hidden rounded-2xl">
-            <div className="relative flex aspect-[4/3] flex-col items-center justify-center gap-2.5 bg-brand-dark px-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-terra/20 transition-transform duration-300 group-hover:scale-110">
-                <PlusIcon />
-              </div>
-              <p className="text-center text-xs leading-snug text-white/65">
-                Not seeing your project?
-                <br />
-                Just ask.
-              </p>
-            </div>
-            <div className="px-4 py-3 text-center">
-              <p className="text-sm font-extrabold text-brand-charcoal">And More</p>
-            </div>
-          </div>
-          </Reveal>
         </div>
+
+        {/* "And More" sits below the grid rather than inside it: six tiles
+            divide evenly at 2, 3 and 6 columns, a seventh orphaned a row at
+            every breakpoint. */}
+        <Reveal delay={services.length * 0.06}>
+          <Link
+            href="/quote"
+            className="group mx-auto flex max-w-xl flex-col items-center justify-center gap-3 rounded-2xl border border-brand-charcoal/10 bg-white/60 px-6 py-5 text-center transition-colors hover:border-brand-green/40 hover:bg-white sm:flex-row sm:gap-4 sm:text-left"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-terra/15 text-brand-green transition-transform duration-300 group-hover:scale-110">
+              <PlusIcon />
+            </span>
+            <span>
+              <span className="block text-sm font-extrabold text-brand-charcoal">
+                And more &mdash; not seeing your project?
+              </span>
+              <span className="block text-sm text-brand-charcoal/65">
+                Tell us what the yard needs and we&apos;ll tell you if we handle it.
+              </span>
+            </span>
+          </Link>
+        </Reveal>
       </div>
     </section>
   );
@@ -223,15 +242,34 @@ function PlantIcon() {
   );
 }
 
-function CleanupIcon() {
+
+function DrainIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-      />
+    <svg
+      className="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3c0 0-5.5 6.1-5.5 9.6a5.5 5.5 0 0011 0C17.5 9.1 12 3 12 3z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 20h18" />
+    </svg>
+  );
+}
+
+function RockIcon() {
+  return (
+    <svg
+      className="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 19l4.2-6.3a1.6 1.6 0 012.6 0L13 19" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l3.6-5.1a1.5 1.5 0 012.5 0L22 19" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 19h20" />
     </svg>
   );
 }

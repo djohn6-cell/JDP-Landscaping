@@ -61,6 +61,16 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   allowedDevOrigins,
+  // Location pages were realigned to the south-metro service area (Oct 2026).
+  // The three north-metro pages were removed; 301 them to /locations so any
+  // existing links or indexed URLs pass their equity on instead of 404ing.
+  async redirects() {
+    return [
+      { source: "/locations/huntersville", destination: "/locations", permanent: true },
+      { source: "/locations/concord", destination: "/locations", permanent: true },
+      { source: "/locations/university-city", destination: "/locations", permanent: true },
+    ];
+  },
   async headers() {
     if (!isProd) {
       return [];

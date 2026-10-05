@@ -1,13 +1,7 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
-const siteUrl = (() => {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL;
-  try {
-    return new URL(raw ?? "").href.replace(/\/$/, "");
-  } catch {
-    return "http://localhost:3000";
-  }
-})();
+const siteUrl = SITE_URL;
 
 export default function robots(): MetadataRoute.Robots {
   return {
